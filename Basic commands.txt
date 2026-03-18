@@ -1,0 +1,9 @@
+1.   .\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+2.   http://127.0.0.1:8000/docs#/
+
+3. npm run dev
+4. npm run build
+5. http://localhost:5173/
+
+6. cd $HOME\Downloads\cs2-analytics\backend
+7. cd $HOME\Downloads\cs2-analytics\frontend

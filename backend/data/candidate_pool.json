@@ -1,0 +1,42 @@
+[
+  {
+    "nickname": "siuhy",
+    "full_name": "Kamil Szkaradek",
+    "nationality": "Poland",
+    "age": 22,
+    "source": "manual_seed",
+    "score": 88
+  },
+  {
+    "nickname": "jL",
+    "full_name": "Justinas Lekavicius",
+    "nationality": "Lithuania",
+    "age": 25,
+    "source": "manual_seed",
+    "score": 84
+  },
+  {
+    "nickname": "broky",
+    "full_name": "Helvijs Saukants",
+    "nationality": "Latvia",
+    "age": 23,
+    "source": "manual_seed",
+    "score": 86
+  },
+  {
+    "nickname": "NAF",
+    "full_name": "Keith Markovic",
+    "nationality": "Canada",
+    "age": 27,
+    "source": "manual_seed",
+    "score": 85
+  },
+  {
+    "nickname": "rain",
+    "full_name": "Havard Nygaard",
+    "nationality": "Norway",
+    "age": 30,
+    "source": "manual_seed",
+    "score": 80
+  }
+]

@@ -1,0 +1,125 @@
+[
+  {
+    "team_name": "Vitality",
+    "region": "Europe",
+    "players": [
+      {
+        "nickname": "ZywOo",
+        "full_name": "Mathieu Herbaut",
+        "nationality": "France",
+        "age": 24,
+        "strength_score": 98
+      },
+      {
+        "nickname": "apEX",
+        "full_name": "Dan Madesclaire",
+        "nationality": "France",
+        "age": 32,
+        "strength_score": 78
+      },
+      {
+        "nickname": "flameZ",
+        "full_name": "Shahar Shushan",
+        "nationality": "Israel",
+        "age": 21,
+        "strength_score": 86
+      },
+      {
+        "nickname": "Spinx",
+        "full_name": "Lotan Giladi",
+        "nationality": "Israel",
+        "age": 24,
+        "strength_score": 88
+      },
+      {
+        "nickname": "mezii",
+        "full_name": "William Merriman",
+        "nationality": "United Kingdom",
+        "age": 26,
+        "strength_score": 80
+      }
+    ]
+  },
+  {
+    "team_name": "Spirit",
+    "region": "CIS",
+    "players": [
+      {
+        "nickname": "donk",
+        "full_name": "Danil Kryshkovets",
+        "nationality": "Russia",
+        "age": 18,
+        "strength_score": 97
+      },
+      {
+        "nickname": "sh1ro",
+        "full_name": "Dmitriy Sokolov",
+        "nationality": "Russia",
+        "age": 23,
+        "strength_score": 93
+      },
+      {
+        "nickname": "zont1x",
+        "full_name": "Myroslav Plakhotia",
+        "nationality": "Ukraine",
+        "age": 20,
+        "strength_score": 81
+      },
+      {
+        "nickname": "magixx",
+        "full_name": "Boris Vorobiev",
+        "nationality": "Russia",
+        "age": 21,
+        "strength_score": 79
+      },
+      {
+        "nickname": "chopper",
+        "full_name": "Leonid Vishnyakov",
+        "nationality": "Russia",
+        "age": 28,
+        "strength_score": 77
+      }
+    ]
+  },
+  {
+    "team_name": "G2",
+    "region": "Europe",
+    "players": [
+      {
+        "nickname": "huNter-",
+        "full_name": "Nemanja Kovac",
+        "nationality": "Bosnia and Herzegovina",
+        "age": 29,
+        "strength_score": 85
+      },
+      {
+        "nickname": "NiKo",
+        "full_name": "Nikola Kovac",
+        "nationality": "Bosnia and Herzegovina",
+        "age": 28,
+        "strength_score": 95
+      },
+      {
+        "nickname": "m0NESY",
+        "full_name": "Ilya Osipov",
+        "nationality": "Russia",
+        "age": 19,
+        "strength_score": 96
+      },
+      {
+        "nickname": "HooXi",
+        "full_name": "Rasmus Nielsen",
+        "nationality": "Denmark",
+        "age": 29,
+        "strength_score": 72
+      },
+      {
+        "nickname": "nexa",
+        "full_name": "Nemanja Isakovic",
+        "nationality": "Serbia",
+        "age": 27,
+        "strength_score": 76
+      }
+    ]
+  }
+]
