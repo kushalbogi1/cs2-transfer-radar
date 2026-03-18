@@ -13,25 +13,17 @@ from app.api.routes.teams import router as teams_router
 from app.api.routes.transfer_battle import router as transfer_battle_router
 from app.config.settings import settings
 
+
+
 app = FastAPI(title=settings.app_name)
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
-
 origins = [
-    FRONTEND_URL,
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
-
-
-
-allowed_origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
 
 if settings.frontend_url:
-    allowed_origins.append(settings.frontend_url)
+    origins.append(settings.frontend_url)
 
 app.add_middleware(
     CORSMiddleware,
@@ -61,6 +53,3 @@ app.include_router(transfer_battle_router)
 app.include_router(suggestions_router)
 app.include_router(best_move_router)
 app.include_router(dashboard_router)
-
-
-
