@@ -66,9 +66,15 @@ export type Player = {
   full_name: string | null;
   nationality: string | null;
   age: number | null;
-  role: string | null;
-  team: string | null;
+  role?: string | null;
+  team?: string | null;
   strength_score?: number | null;
+  primary_role?: string | null;
+  secondary_role?: string | null;
+  current_team?: {
+    team_id: number;
+    team_name: string;
+  } | null;
 };
 
 export type PlayerStatsResponse = {
@@ -256,10 +262,88 @@ export type TransferBattleResponse = {
 };
 
 //
+// Best move
+//
+export type BestMoveResponse = {
+  team: {
+    id: number;
+    name: string;
+  };
+  top_moves: {
+    outgoing_player: {
+      id: number;
+      nickname: string;
+      role: string | null;
+      strength_score: number | null;
+    };
+    incoming_player: {
+      id: number;
+      nickname: string;
+      role: string | null;
+      strength_score: number | null;
+      fit_score: number;
+    };
+    projection: SimulationResponse;
+  }[];
+  meta: {
+    evaluated_moves: number;
+    returned_moves: number;
+    best_delta_overall: number | null;
+    summary_message: string;
+  };
+};
+
+//
+// Dashboard
+//
+export type DashboardOverview = {
+  counts: {
+    teams: number;
+    players: number;
+  };
+  strongest_player: {
+    id: number;
+    nickname: string;
+    strength_score: number | null;
+  } | null;
+  most_unstable_team: {
+    team: {
+      id: number;
+      name: string;
+    };
+    roster_health_score: number;
+    label: string;
+    suggested_action: string;
+  } | null;
+  featured_best_move: {
+    team: {
+      id: number;
+      name: string;
+    };
+    move: {
+      outgoing_player: {
+        id: number;
+        nickname: string;
+        role: string | null;
+        strength_score: number | null;
+      };
+      incoming_player: {
+        id: number;
+        nickname: string;
+        role: string | null;
+        strength_score: number | null;
+        fit_score: number;
+      };
+      projection: SimulationResponse;
+    };
+  } | null;
+};
+
+//
 // Teams
 //
 export async function fetchTeams(): Promise<Team[]> {
-  const res = await fetch(`${API_BASE_URL}/teams`);
+  const res = await fetch(`${API_BASE_URL}/teams/`);
   if (!res.ok) throw new Error("Failed to fetch teams");
   return res.json();
 }
@@ -280,7 +364,7 @@ export async function fetchTeamAnalysis(teamId: number): Promise<TeamAnalysis> {
 // Players
 //
 export async function fetchPlayers(): Promise<Player[]> {
-  const res = await fetch(`${API_BASE_URL}/players`);
+  const res = await fetch(`${API_BASE_URL}/players/`);
   if (!res.ok) throw new Error("Failed to fetch players");
   return res.json();
 }
@@ -391,88 +475,18 @@ export async function runTransferBattle(payload: {
   return res.json();
 }
 
-
 //
-// BEST MOVE
+// Best move
 //
-export type BestMoveResponse = {
-  team: {
-    id: number;
-    name: string;
-  };
-  top_moves: {
-    outgoing_player: {
-      id: number;
-      nickname: string;
-      role: string | null;
-      strength_score: number | null;
-    };
-    incoming_player: {
-      id: number;
-      nickname: string;
-      role: string | null;
-      strength_score: number | null;
-      fit_score: number;
-    };
-    projection: SimulationResponse;
-  }[];
-  meta: {
-    evaluated_moves: number;
-    returned_moves: number;
-    best_delta_overall: number | null;
-    summary_message: string;
-  };
-};
-
 export async function fetchBestMove(teamId: number): Promise<BestMoveResponse> {
   const res = await fetch(`${API_BASE_URL}/teams/${teamId}/best-move`);
   if (!res.ok) throw new Error("Failed to fetch best move");
   return res.json();
 }
 
-export type DashboardOverview = {
-  counts: {
-    teams: number;
-    players: number;
-  };
-  strongest_player: {
-    id: number;
-    nickname: string;
-    strength_score: number | null;
-  } | null;
-  most_unstable_team: {
-    team: {
-      id: number;
-      name: string;
-    };
-    roster_health_score: number;
-    label: string;
-    suggested_action: string;
-  } | null;
-  featured_best_move: {
-    team: {
-      id: number;
-      name: string;
-    };
-    move: {
-      outgoing_player: {
-        id: number;
-        nickname: string;
-        role: string | null;
-        strength_score: number | null;
-      };
-      incoming_player: {
-        id: number;
-        nickname: string;
-        role: string | null;
-        strength_score: number | null;
-        fit_score: number;
-      };
-      projection: SimulationResponse;
-    };
-  } | null;
-};
-
+//
+// Dashboard
+//
 export async function fetchDashboardOverview(): Promise<DashboardOverview> {
   const res = await fetch(`${API_BASE_URL}/dashboard/overview`);
   if (!res.ok) throw new Error("Failed to fetch dashboard overview");
