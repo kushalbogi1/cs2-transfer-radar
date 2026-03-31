@@ -1,0 +1,193 @@
+PROJECT DEPLOYMENT SETUP
+
+We have a full-stack app deployed using:
+
+- Frontend → Vercel
+- Backend → Render
+- Database → Render PostgreSQL
+- Code → GitHub (main branch)
+
+--------------------------------------------------
+
+1. GIT (SOURCE OF TRUTH)
+
+Repository:
+https://github.com/kushalbogi1/cs2-transfer-radar
+
+Branch:
+main
+
+Workflow:
+- All changes are made locally
+- Then pushed using:
+
+git add .
+git commit -m "message"
+git push origin main
+
+This automatically triggers:
+- Vercel deployment (frontend)
+- Render deployment (backend)
+
+--------------------------------------------------
+
+2. FRONTEND (VERCEL)
+
+Platform:
+Vercel
+
+Project:
+cs2-transfer-radar
+
+Live URL:
+https://cs2-transfer-radar.vercel.app
+
+Framework:
+React + Vite
+
+Environment Variable:
+VITE_API_BASE_URL=https://cs2-transfer-radar.onrender.com
+
+Important:
+- Frontend uses this base URL for all API calls
+- Must always point to Render backend
+
+Commands used locally:
+npm install
+npm run dev
+npm run build
+
+Deployment:
+- Automatic on git push
+- No manual deploy needed
+
+--------------------------------------------------
+
+3. BACKEND (RENDER)
+
+Platform:
+Render
+
+Service Type:
+Web Service
+
+Live URL:
+https://cs2-transfer-radar.onrender.com
+
+Framework:
+FastAPI
+
+Start Command:
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+(Actual working version used):
+/opt/render/project/src/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+Build Command:
+pip install -r requirements.txt
+
+Environment Variables:
+DATABASE_URL=<Render PostgreSQL URL>
+
+Important:
+- CORS is configured to allow Vercel frontend
+- Backend must always include:
+  allow_origins = ["https://cs2-transfer-radar.vercel.app"]
+
+Deployment:
+- Automatic on git push
+- Logs available in Render dashboard
+
+--------------------------------------------------
+
+4. DATABASE (RENDER POSTGRES)
+
+Type:
+Managed PostgreSQL (Render)
+
+Connection:
+Stored in DATABASE_URL
+
+Tables created using:
+python scripts/create_tables.py
+
+Data loaded using:
+python scripts/seed_data.py
+python scripts/ingest_player_stats.py
+python scripts/generate_candidates.py
+
+--------------------------------------------------
+
+5. LOCAL DEVELOPMENT SETUP
+
+Backend:
+cd backend
+.\.venv\Scripts\Activate
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
+
+Frontend:
+cd frontend
+npm run dev
+
+--------------------------------------------------
+
+6. API COMMUNICATION FLOW
+
+Browser (Vercel frontend)
+    ↓
+calls API using VITE_API_BASE_URL
+    ↓
+https://cs2-transfer-radar.onrender.com
+    ↓
+FastAPI backend
+    ↓
+PostgreSQL database
+
+--------------------------------------------------
+
+7. KNOWN IMPORTANT CONFIGS
+
+CORS (backend/main.py):
+- Must allow Vercel domain
+- Otherwise frontend gets "Failed to fetch"
+
+Frontend API file (api.ts):
+- Uses VITE_API_BASE_URL
+- Must not hardcode localhost
+
+--------------------------------------------------
+
+8. DEBUGGING RULES
+
+If frontend says "Failed to fetch":
+→ check backend is live
+→ check CORS
+→ check VITE_API_BASE_URL
+
+If backend errors:
+→ check Render logs
+
+If data missing:
+→ check database
+→ rerun scripts
+
+--------------------------------------------------
+
+9. DO NOT BREAK
+
+- API routes structure
+- JSON response formats
+- environment variables
+- candidate_mode logic
+- simulator endpoints
+
+--------------------------------------------------
+
+10. GOAL FOR NEXT TASK
+
+We are expanding player data and improving simulator suggestions.
+
+All new code must:
+- work with existing API structure
+- not break frontend
+- not require deployment changes

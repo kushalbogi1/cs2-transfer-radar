@@ -3,71 +3,86 @@ import { useParams } from "react-router-dom";
 import Badge from "../components/Badge";
 import { fetchPlayer, fetchPlayerStats, type Player, type PlayerStatsResponse } from "../api/api";
 
-function getStrengthType(score?: number | null): "success" | "warning" | "danger" | "info" | "neutral" {
-  if (score === null || score === undefined) return "neutral";
-  if (score >= 75) return "success";
-  if (score >= 60) return "warning";
+function getRatingType(rating?: number | null): "success" | "warning" | "danger" | "info" | "neutral" {
+  if (rating === null || rating === undefined) return "neutral";
+  if (rating >= 1.15) return "success";
+  if (rating >= 1.05) return "info";
+  if (rating >= 0.95) return "warning";
   return "danger";
 }
 
 export default function PlayerPage() {
   const { playerId } = useParams();
-
   const [player, setPlayer] = useState<Player | null>(null);
   const [stats, setStats] = useState<PlayerStatsResponse | null>(null);
-
   const [loading, setLoading] = useState(true);
   const [statsLoading, setStatsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function loadPlayerPage() {
-      if (!playerId) {
-        setError("Missing player id.");
-        setLoading(false);
-        setStatsLoading(false);
-        return;
-      }
+    async function loadPlayer() {
+      if (!playerId) return;
 
       try {
-        const numericPlayerId = Number(playerId);
-
-        const [playerData, statsData] = await Promise.all([
-          fetchPlayer(numericPlayerId),
-          fetchPlayerStats(numericPlayerId),
-        ]);
-
-        setPlayer(playerData);
-        setStats(statsData);
+        const data = await fetchPlayer(Number(playerId));
+        setPlayer(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load player page");
+        setError(err instanceof Error ? err.message : "Failed to load player");
       } finally {
         setLoading(false);
+      }
+    }
+
+    loadPlayer();
+  }, [playerId]);
+
+  useEffect(() => {
+    async function loadStats() {
+      if (!playerId) return;
+
+      try {
+        const data = await fetchPlayerStats(Number(playerId));
+        setStats(data);
+      } catch {
+        setStats(null);
+      } finally {
         setStatsLoading(false);
       }
     }
 
-    loadPlayerPage();
+    loadStats();
   }, [playerId]);
 
   if (loading) return <div style={styles.page}>Loading player...</div>;
-  if (error) return <div style={styles.page}>Error: {error}</div>;
-  if (!player) return <div style={styles.page}>Player not found.</div>;
+  if (error || !player) return <div style={styles.page}>Error: {error ?? "Player not found"}</div>;
+
+  const latest = stats?.latest_snapshot ?? null;
+  const history = stats?.history ?? [];
+  const compactHistory = history.slice(0, 5);
 
   return (
     <div style={styles.page}>
-      <div style={styles.heroBlock}>
-        <div style={styles.heroHeader}>
-          <div>
-            <h1 style={styles.title}>{player.nickname}</h1>
-            <p style={styles.subtitle}>
-              {player.team ?? "Free agent / unassigned"} • {player.role ?? "Unknown role"}
-            </p>
+      <div style={styles.hero}>
+        <div>
+          <div style={styles.heroBadgeRow}>
+            <Badge
+              label={`Rating ${latest?.rating ?? player.current_rating ?? "N/A"}`}
+              type={getRatingType(latest?.rating ?? player.current_rating)}
+            />
+            <Badge
+              label={player.primary_role ?? player.role ?? "Unknown role"}
+              type="info"
+            />
+            {player.secondary_role ? (
+              <Badge label={`Secondary ${player.secondary_role}`} type="warning" />
+            ) : null}
           </div>
-          <Badge
-            label={`Strength ${player.strength_score ?? "N/A"}`}
-            type={getStrengthType(player.strength_score)}
-          />
+
+          <h1 style={styles.title}>{player.nickname}</h1>
+          <p style={styles.subtitle}>
+            {player.team ?? "Free agent / unassigned"} • {player.primary_role ?? player.role ?? "Unknown role"}
+            {player.secondary_role ? ` • Secondary: ${player.secondary_role}` : ""}
+          </p>
         </div>
       </div>
 
@@ -77,7 +92,34 @@ export default function PlayerPage() {
           onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
         >
-          <p style={styles.eyebrow}>STRENGTH SCORE</p>
+          <p style={styles.eyebrow}>CURRENT RATING</p>
+          <p style={styles.bigText}>{latest?.rating ?? player.current_rating ?? "N/A"}</p>
+        </div>
+
+        <div
+          style={styles.summaryCard}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
+        >
+          <p style={styles.eyebrow}>PRIMARY ROLE</p>
+          <p style={styles.bigText}>{player.primary_role ?? player.role ?? "Unknown"}</p>
+        </div>
+
+        <div
+          style={styles.summaryCard}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
+        >
+          <p style={styles.eyebrow}>SECONDARY ROLE</p>
+          <p style={styles.bigText}>{player.secondary_role ?? "None"}</p>
+        </div>
+
+        <div
+          style={styles.summaryCard}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
+        >
+          <p style={styles.eyebrow}>INTERNAL SCOUTING SCORE</p>
           <p style={styles.bigText}>{player.strength_score ?? "N/A"}</p>
         </div>
 
@@ -86,8 +128,26 @@ export default function PlayerPage() {
           onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
         >
+          <p style={styles.eyebrow}>TEAM</p>
+          <p style={styles.bigTextSmall}>{player.team ?? "Unassigned"}</p>
+        </div>
+
+        <div
+          style={styles.summaryCard}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
+        >
+          <p style={styles.eyebrow}>STATUS</p>
+          <p style={styles.bigText}>{player.status ?? "Unknown"}</p>
+        </div>
+
+        <div
+          style={styles.summaryCard}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
+        >
           <p style={styles.eyebrow}>NATIONALITY</p>
-          <p style={styles.bigText}>{player.nationality ?? "Unknown"}</p>
+          <p style={styles.bigTextSmall}>{player.nationality ?? "Unknown"}</p>
         </div>
 
         <div
@@ -98,90 +158,71 @@ export default function PlayerPage() {
           <p style={styles.eyebrow}>AGE</p>
           <p style={styles.bigText}>{player.age ?? "Unknown"}</p>
         </div>
+      </div>
 
-        <div
-          style={styles.summaryCard}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
-        >
-          <p style={styles.eyebrow}>ROLE</p>
-          <p style={styles.bigText}>{player.role ?? "Unknown"}</p>
+      <div style={styles.gridTwo}>
+        <div style={styles.card}>
+          <div style={styles.cardHeader}>
+            <h2 style={styles.cardTitle}>Current Snapshot</h2>
+            {statsLoading ? <Badge label="Loading" type="neutral" /> : <Badge label="Latest" type="info" />}
+          </div>
+
+          {latest ? (
+            <div style={styles.statsGrid}>
+              <p>Rating: {latest.rating ?? "N/A"}</p>
+              <p>Impact: {latest.impact ?? "N/A"}</p>
+              <p>ADR: {latest.adr ?? "N/A"}</p>
+              <p>KAST: {latest.kast ?? "N/A"}</p>
+              <p>Maps Played: {latest.maps_played ?? "N/A"}</p>
+              <p>Snapshot Date: {latest.snapshot_date ?? "N/A"}</p>
+            </div>
+          ) : (
+            <p>No snapshot stats available yet.</p>
+          )}
+        </div>
+
+        <div style={styles.card}>
+          <div style={styles.cardHeader}>
+            <h2 style={styles.cardTitle}>Profile</h2>
+            <Badge label="Scouting View" type="warning" />
+          </div>
+
+          <div style={styles.statsGrid}>
+            <p>Nickname: {player.nickname}</p>
+            <p>Full Name: {player.full_name ?? "Unknown"}</p>
+            <p>Primary Role: {player.primary_role ?? player.role ?? "Unknown"}</p>
+            <p>Secondary Role: {player.secondary_role ?? "None"}</p>
+            <p>Market Tier: {player.market_value_tier ?? "Unknown"}</p>
+            <p>Internal Score: {player.strength_score ?? "N/A"}</p>
+          </div>
         </div>
       </div>
 
-      {statsLoading ? (
-        <div style={styles.card}>Loading stats...</div>
-      ) : stats ? (
-        <>
-          <div
-            style={styles.card}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
-          >
-            <div style={styles.cardHeader}>
-              <h2 style={styles.cardTitle}>Latest Snapshot</h2>
-              {stats.latest_snapshot ? (
-                <Badge label={stats.latest_snapshot.snapshot_date} type="info" />
-              ) : null}
-            </div>
+      <div style={styles.card}>
+        <div style={styles.cardHeader}>
+          <h2 style={styles.cardTitle}>Recent Snapshot History</h2>
+          <Badge label={`${compactHistory.length} shown`} type="info" />
+        </div>
 
-            {stats.latest_snapshot ? (
-              <div style={styles.gridTwo}>
+        {compactHistory.length > 0 ? (
+          <div style={styles.historyList}>
+            {compactHistory.map((item, idx) => (
+              <div key={idx} style={styles.historyRow}>
                 <div>
-                  <p><strong>Source:</strong> {stats.latest_snapshot.source}</p>
-                  <p><strong>Date:</strong> {stats.latest_snapshot.snapshot_date}</p>
-                  <p><strong>Rating:</strong> {stats.latest_snapshot.rating ?? "N/A"}</p>
+                  <p style={styles.historyTitle}>{item.snapshot_date ?? "Unknown date"}</p>
+                  <p style={styles.historySubtitle}>
+                    Rating {item.rating ?? "N/A"} • Impact {item.impact ?? "N/A"} • ADR {item.adr ?? "N/A"} • KAST{" "}
+                    {item.kast ?? "N/A"}
+                  </p>
                 </div>
-
-                <div>
-                  <p><strong>Impact:</strong> {stats.latest_snapshot.impact ?? "N/A"}</p>
-                  <p><strong>ADR:</strong> {stats.latest_snapshot.adr ?? "N/A"}</p>
-                  <p><strong>KAST:</strong> {stats.latest_snapshot.kast ?? "N/A"}</p>
-                  <p><strong>Maps Played:</strong> {stats.latest_snapshot.maps_played ?? "N/A"}</p>
-                </div>
+                <Badge label={`Maps ${item.maps_played ?? "N/A"}`} type="neutral" />
               </div>
-            ) : (
-              <p>No snapshots available.</p>
-            )}
+            ))}
           </div>
-
-          <div
-            style={styles.card}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
-          >
-            <div style={styles.cardHeader}>
-              <h2 style={styles.cardTitle}>Snapshot History</h2>
-              <Badge label={`${stats.snapshot_count} snapshot(s)`} type="neutral" />
-            </div>
-
-            {stats.snapshots.length === 0 ? (
-              <p>No historical snapshots found.</p>
-            ) : (
-              <div style={styles.historyList}>
-                {stats.snapshots.map((snapshot) => (
-                  <div
-                    key={snapshot.id}
-                    style={styles.historyCard}
-                    onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
-                  >
-                    <div style={styles.historyHeader}>
-                      <strong>{snapshot.snapshot_date}</strong>
-                      <Badge label={snapshot.source} type="info" />
-                    </div>
-                    <p><strong>Rating:</strong> {snapshot.rating ?? "N/A"}</p>
-                    <p><strong>Impact:</strong> {snapshot.impact ?? "N/A"}</p>
-                    <p><strong>ADR:</strong> {snapshot.adr ?? "N/A"}</p>
-                    <p><strong>KAST:</strong> {snapshot.kast ?? "N/A"}</p>
-                    <p><strong>Maps:</strong> {snapshot.maps_played ?? "N/A"}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </>
-      ) : null}
+        ) : (
+          <p>No historical snapshots available.</p>
+        )}
+      </div>
     </div>
   );
 }
@@ -200,28 +241,31 @@ const styles: Record<string, React.CSSProperties> = {
     padding: "32px",
     color: "#f9fafb",
   },
-  heroBlock: {
+  hero: {
+    ...baseCard,
     marginBottom: "24px",
   },
-  heroHeader: {
+  heroBadgeRow: {
     display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    gap: "16px",
+    gap: "10px",
     flexWrap: "wrap",
+    marginBottom: "14px",
   },
   title: {
-    marginBottom: "8px",
+    marginTop: 0,
+    marginBottom: "10px",
+    fontSize: "40px",
   },
   subtitle: {
     color: "#d1d5db",
     marginBottom: 0,
+    lineHeight: 1.6,
   },
   summaryGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
     gap: "16px",
-    marginBottom: "20px",
+    marginBottom: "24px",
   },
   summaryCard: {
     ...baseCard,
@@ -239,44 +283,59 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 700,
     margin: 0,
   },
+  bigTextSmall: {
+    fontSize: "18px",
+    fontWeight: 700,
+    margin: 0,
+    lineHeight: 1.4,
+  },
+  gridTwo: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "16px",
+    marginBottom: "24px",
+  },
   card: {
     ...baseCard,
-    marginBottom: "16px",
+    marginBottom: "24px",
   },
   cardHeader: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     gap: "12px",
-    marginBottom: "12px",
     flexWrap: "wrap",
+    marginBottom: "12px",
   },
   cardTitle: {
     margin: 0,
   },
-  gridTwo: {
+  statsGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "16px",
+    gap: "8px",
+    color: "#e5e7eb",
   },
   historyList: {
     display: "grid",
     gap: "12px",
   },
-  historyCard: {
-    border: "1px solid #374151",
-    borderRadius: "16px",
-    padding: "16px",
-    background: "linear-gradient(145deg, #111827, #0f172a)",
-    transition: "all 0.2s ease",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-  },
-  historyHeader: {
+  historyRow: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: "10px",
-    marginBottom: "10px",
+    gap: "12px",
+    paddingBottom: "12px",
+    borderBottom: "1px solid #374151",
     flexWrap: "wrap",
+  },
+  historyTitle: {
+    margin: 0,
+    fontWeight: 700,
+  },
+  historySubtitle: {
+    margin: "6px 0 0 0",
+    color: "#d1d5db",
+    fontSize: "14px",
+    lineHeight: 1.5,
   },
 };

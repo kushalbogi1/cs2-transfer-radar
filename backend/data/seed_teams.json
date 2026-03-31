@@ -3,123 +3,330 @@
     "team_name": "Vitality",
     "region": "Europe",
     "players": [
-      {
-        "nickname": "ZywOo",
-        "full_name": "Mathieu Herbaut",
-        "nationality": "France",
-        "age": 24,
-        "strength_score": 98
-      },
-      {
-        "nickname": "apEX",
-        "full_name": "Dan Madesclaire",
-        "nationality": "France",
-        "age": 32,
-        "strength_score": 78
-      },
-      {
-        "nickname": "flameZ",
-        "full_name": "Shahar Shushan",
-        "nationality": "Israel",
-        "age": 21,
-        "strength_score": 86
-      },
-      {
-        "nickname": "Spinx",
-        "full_name": "Lotan Giladi",
-        "nationality": "Israel",
-        "age": 24,
-        "strength_score": 88
-      },
-      {
-        "nickname": "mezii",
-        "full_name": "William Merriman",
-        "nationality": "United Kingdom",
-        "age": 26,
-        "strength_score": 80
-      }
+      { "nickname": "apEX", "full_name": "Dan Madesclaire", "nationality": "France", "age": 32 },
+      { "nickname": "ropz", "full_name": "Robin Kool", "nationality": "Estonia", "age": 26 },
+      { "nickname": "ZywOo", "full_name": "Mathieu Herbaut", "nationality": "France", "age": 25 },
+      { "nickname": "flameZ", "full_name": "Shahar Shushan", "nationality": "Israel", "age": 22 },
+      { "nickname": "mezii", "full_name": "William Merriman", "nationality": "United Kingdom", "age": 27 }
+    ]
+  },
+  {
+    "team_name": "FURIA",
+    "region": "South America",
+    "players": [
+      { "nickname": "FalleN", "full_name": "Gabriel Toledo", "nationality": "Brazil", "age": 34 },
+      { "nickname": "yuurih", "full_name": "Yuri Santos", "nationality": "Brazil", "age": 26 },
+      { "nickname": "YEKINDAR", "full_name": "Mareks Gaļinskis", "nationality": "Latvia", "age": 26 },
+      { "nickname": "KSCERATO", "full_name": "Kaike Cerato", "nationality": "Brazil", "age": 26 },
+      { "nickname": "molodoy", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "MOUZ",
+    "region": "Europe",
+    "players": [
+      { "nickname": "Brollan", "full_name": "Ludvig Brolin", "nationality": "Sweden", "age": 23 },
+      { "nickname": "torzsi", "full_name": "Ádám Torzsás", "nationality": "Hungary", "age": 24 },
+      { "nickname": "Spinx", "full_name": "Lotan Giladi", "nationality": "Israel", "age": 24 },
+      { "nickname": "Jimpphat", "full_name": "Jimi Salo", "nationality": "Finland", "age": 19 },
+      { "nickname": "xertioN", "full_name": "Dorian Berman", "nationality": "Israel", "age": 21 }
+    ]
+  },
+  {
+    "team_name": "Falcons",
+    "region": "International",
+    "players": [
+      { "nickname": "NiKo", "full_name": "Nikola Kovač", "nationality": "Bosnia and Herzegovina", "age": 29 },
+      { "nickname": "TeSeS", "full_name": "René Madsen", "nationality": "Denmark", "age": 25 },
+      { "nickname": "m0NESY", "full_name": "Ilya Osipov", "nationality": "Russia", "age": 20 },
+      { "nickname": "kyxsan", "full_name": "Damjan Stoilkovski", "nationality": "North Macedonia", "age": 24 },
+      { "nickname": "kyousuke", "full_name": null, "nationality": "Russia", "age": null }
+    ]
+  },
+  {
+    "team_name": "PARIVISION",
+    "region": "CIS",
+    "players": [
+      { "nickname": "Jame", "full_name": "Dzhami Ali", "nationality": "Russia", "age": 27 },
+      { "nickname": "BELCHONOKK", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "xiELO", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "nota", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "zweih", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "Natus Vincere",
+    "region": "Europe",
+    "players": [
+      { "nickname": "Aleksib", "full_name": "Aleksi Virolainen", "nationality": "Finland", "age": 28 },
+      { "nickname": "iM", "full_name": "Ivan Mihai", "nationality": "Romania", "age": 25 },
+      { "nickname": "b1t", "full_name": "Valerii Vakhovskyi", "nationality": "Ukraine", "age": 23 },
+      { "nickname": "w0nderful", "full_name": "Ihor Zhdanov", "nationality": "Ukraine", "age": 20 },
+      { "nickname": "makazze", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "Aurora",
+    "region": "Europe",
+    "players": [
+      { "nickname": "MAJ3R", "full_name": "Engin Küpeli", "nationality": "Turkey", "age": 34 },
+      { "nickname": "XANTARES", "full_name": "İsmailcan Dörtkardeş", "nationality": "Turkey", "age": 30 },
+      { "nickname": "woxic", "full_name": "Özgür Eker", "nationality": "Turkey", "age": 27 },
+      { "nickname": "soulfly", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "Wicadia", "full_name": null, "nationality": "Turkey", "age": null }
     ]
   },
   {
     "team_name": "Spirit",
     "region": "CIS",
     "players": [
-      {
-        "nickname": "donk",
-        "full_name": "Danil Kryshkovets",
-        "nationality": "Russia",
-        "age": 18,
-        "strength_score": 97
-      },
-      {
-        "nickname": "sh1ro",
-        "full_name": "Dmitriy Sokolov",
-        "nationality": "Russia",
-        "age": 23,
-        "strength_score": 93
-      },
-      {
-        "nickname": "zont1x",
-        "full_name": "Myroslav Plakhotia",
-        "nationality": "Ukraine",
-        "age": 20,
-        "strength_score": 81
-      },
-      {
-        "nickname": "magixx",
-        "full_name": "Boris Vorobiev",
-        "nationality": "Russia",
-        "age": 21,
-        "strength_score": 79
-      },
-      {
-        "nickname": "chopper",
-        "full_name": "Leonid Vishnyakov",
-        "nationality": "Russia",
-        "age": 28,
-        "strength_score": 77
-      }
+      { "nickname": "sh1ro", "full_name": "Dmitry Sokolov", "nationality": "Russia", "age": 24 },
+      { "nickname": "magixx", "full_name": "Boris Vorobiev", "nationality": "Russia", "age": 22 },
+      { "nickname": "tN1R", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "zont1x", "full_name": null, "nationality": "Ukraine", "age": 20 },
+      { "nickname": "donk", "full_name": "Danil Kryshkovets", "nationality": "Russia", "age": 18 }
+    ]
+  },
+  {
+    "team_name": "The MongolZ",
+    "region": "Asia",
+    "players": [
+      { "nickname": "bLitz", "full_name": "Garidmagnai Byambasuren", "nationality": "Mongolia", "age": 24 },
+      { "nickname": "Techno", "full_name": null, "nationality": "Mongolia", "age": null },
+      { "nickname": "mzinho", "full_name": null, "nationality": "Mongolia", "age": null },
+      { "nickname": "910", "full_name": null, "nationality": "Mongolia", "age": null },
+      { "nickname": "cobrazera", "full_name": null, "nationality": "Mongolia", "age": null }
+    ]
+  },
+  {
+    "team_name": "Astralis",
+    "region": "Europe",
+    "players": [
+      { "nickname": "HooXi", "full_name": "Rasmus Nielsen", "nationality": "Denmark", "age": 30 },
+      { "nickname": "phzy", "full_name": "Love Smidebrant", "nationality": "Sweden", "age": 23 },
+      { "nickname": "jabbi", "full_name": "Jakob Nygaard", "nationality": "Denmark", "age": 22 },
+      { "nickname": "Staehr", "full_name": "Victor Staehr", "nationality": "Denmark", "age": 21 },
+      { "nickname": "ryu", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "FaZe",
+    "region": "International",
+    "players": [
+      { "nickname": "karrigan", "full_name": "Finn Andersen", "nationality": "Denmark", "age": 35 },
+      { "nickname": "frozen", "full_name": "David Čerňanský", "nationality": "Slovakia", "age": 23 },
+      { "nickname": "Twistzz", "full_name": "Russel Van Dulken", "nationality": "Canada", "age": 26 },
+      { "nickname": "broky", "full_name": "Helvijs Saukants", "nationality": "Latvia", "age": 25 },
+      { "nickname": "jcobbb", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "FUT",
+    "region": "Europe",
+    "players": [
+      { "nickname": "dem0n", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "lauNX", "full_name": "Laurențiu Țârlea", "nationality": "Romania", "age": 20 },
+      { "nickname": "Krabeni", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "cmtry", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "dziugss", "full_name": null, "nationality": null, "age": null }
     ]
   },
   {
     "team_name": "G2",
     "region": "Europe",
     "players": [
-      {
-        "nickname": "huNter-",
-        "full_name": "Nemanja Kovac",
-        "nationality": "Bosnia and Herzegovina",
-        "age": 29,
-        "strength_score": 85
-      },
-      {
-        "nickname": "NiKo",
-        "full_name": "Nikola Kovac",
-        "nationality": "Bosnia and Herzegovina",
-        "age": 28,
-        "strength_score": 95
-      },
-      {
-        "nickname": "m0NESY",
-        "full_name": "Ilya Osipov",
-        "nationality": "Russia",
-        "age": 19,
-        "strength_score": 96
-      },
-      {
-        "nickname": "HooXi",
-        "full_name": "Rasmus Nielsen",
-        "nationality": "Denmark",
-        "age": 29,
-        "strength_score": 72
-      },
-      {
-        "nickname": "nexa",
-        "full_name": "Nemanja Isakovic",
-        "nationality": "Serbia",
-        "age": 27,
-        "strength_score": 76
-      }
+      { "nickname": "huNter-", "full_name": "Nemanja Kovač", "nationality": "Bosnia and Herzegovina", "age": 29 },
+      { "nickname": "NertZ", "full_name": "Guy Iluz", "nationality": "Israel", "age": 26 },
+      { "nickname": "SunPayus", "full_name": "Álvaro García", "nationality": "Spain", "age": 27 },
+      { "nickname": "HeavyGod", "full_name": "Nikita Martynenko", "nationality": "Israel", "age": 23 },
+      { "nickname": "MATYS", "full_name": null, "nationality": "Slovakia", "age": null }
+    ]
+  },
+  {
+    "team_name": "3DMAX",
+    "region": "Europe",
+    "players": [
+      { "nickname": "Maka", "full_name": "Bryan Canda", "nationality": "France", "age": 28 },
+      { "nickname": "Lucky", "full_name": "Audric Jug", "nationality": "France", "age": 23 },
+      { "nickname": "misutaaa", "full_name": "Kévin Rabier", "nationality": "France", "age": 22 },
+      { "nickname": "Ex3rcice", "full_name": null, "nationality": "France", "age": null },
+      { "nickname": "Graviti", "full_name": null, "nationality": "France", "age": null }
+    ]
+  },
+  {
+    "team_name": "Legacy",
+    "region": "South America",
+    "players": [
+      { "nickname": "arT", "full_name": "Andrei Piovezan", "nationality": "Brazil", "age": 29 },
+      { "nickname": "dumau", "full_name": "Eduardo Wolkmer", "nationality": "Brazil", "age": 22 },
+      { "nickname": "latto", "full_name": null, "nationality": "Brazil", "age": null },
+      { "nickname": "n1ssim", "full_name": null, "nationality": "Brazil", "age": null },
+      { "nickname": "saadzin", "full_name": null, "nationality": "Brazil", "age": null }
+    ]
+  },
+  {
+    "team_name": "GamerLegion",
+    "region": "Europe",
+    "players": [
+      { "nickname": "Snax", "full_name": "Janusz Pogorzelski", "nationality": "Poland", "age": 32 },
+      { "nickname": "REZ", "full_name": "Fredrik Sterner", "nationality": "Sweden", "age": 27 },
+      { "nickname": "Tauson", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "PR", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "hypex", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "paiN",
+    "region": "South America",
+    "players": [
+      { "nickname": "vsm", "full_name": "Vinicius Moreira", "nationality": "Brazil", "age": 26 },
+      { "nickname": "biguzera", "full_name": "Rodrigo Bittencourt", "nationality": "Brazil", "age": 28 },
+      { "nickname": "piriajr", "full_name": null, "nationality": "Brazil", "age": null },
+      { "nickname": "nqz", "full_name": "Lucas Soares", "nationality": "Brazil", "age": 20 },
+      { "nickname": "snow", "full_name": null, "nationality": "Brazil", "age": null }
+    ]
+  },
+  {
+    "team_name": "HEROIC",
+    "region": "Europe",
+    "players": [
+      { "nickname": "xfl0ud", "full_name": "Yasin Koç", "nationality": "Turkey", "age": 23 },
+      { "nickname": "nilo", "full_name": null, "nationality": "Sweden", "age": null },
+      { "nickname": "susp", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "Chr1zN", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "Alkaren", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "B8",
+    "region": "Europe",
+    "players": [
+      { "nickname": "alex666", "full_name": null, "nationality": "Ukraine", "age": null },
+      { "nickname": "npl", "full_name": "Andrii Kukharskyi", "nationality": "Ukraine", "age": 20 },
+      { "nickname": "kensizor", "full_name": null, "nationality": "Ukraine", "age": null },
+      { "nickname": "esenthial", "full_name": null, "nationality": "Ukraine", "age": null },
+      { "nickname": "s1zzi", "full_name": null, "nationality": "Ukraine", "age": null }
+    ]
+  },
+  {
+    "team_name": "Liquid",
+    "region": "North America",
+    "players": [
+      { "nickname": "NAF", "full_name": "Keith Markovic", "nationality": "Canada", "age": 28 },
+      { "nickname": "EliGE", "full_name": "Jonathan Jablonowski", "nationality": "USA", "age": 28 },
+      { "nickname": "malbsMd", "full_name": "Mario Samayoa", "nationality": "Guatemala", "age": 23 },
+      { "nickname": "siuhy", "full_name": "Kamil Szkaradek", "nationality": "Poland", "age": 23 },
+      { "nickname": "ultimate", "full_name": null, "nationality": "Poland", "age": null }
+    ]
+  },
+  {
+    "team_name": "Gentle Mates",
+    "region": "Europe",
+    "players": [
+      { "nickname": "alex", "full_name": "Alejandro Masanet", "nationality": "Spain", "age": 30 },
+      { "nickname": "mopoz", "full_name": "Alejandro Fernández-Quejo Cano", "nationality": "Spain", "age": 28 },
+      { "nickname": "sausol", "full_name": null, "nationality": "Spain", "age": null },
+      { "nickname": "dav1g", "full_name": "David Granado Bermudo", "nationality": "Spain", "age": 24 },
+      { "nickname": "MartinezSa", "full_name": "Antonio Martinez Sánchez", "nationality": "Spain", "age": 24 }
+    ]
+  },
+  {
+    "team_name": "Ninjas in Pyjamas",
+    "region": "Europe",
+    "players": [
+      { "nickname": "Snappi", "full_name": "Marco Pfeiffer", "nationality": "Denmark", "age": 35 },
+      { "nickname": "sjuush", "full_name": "Rasmus Beck", "nationality": "Denmark", "age": 27 },
+      { "nickname": "r1nkle", "full_name": null, "nationality": "Ukraine", "age": null },
+      { "nickname": "xKacpersky", "full_name": null, "nationality": "Poland", "age": null },
+      { "nickname": "cairne", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "Monte",
+    "region": "Europe",
+    "players": [
+      { "nickname": "Rainwaker", "full_name": "Aleks Petrov", "nationality": "Bulgaria", "age": 24 },
+      { "nickname": "Bymas", "full_name": "Aurimas Pipiras", "nationality": "Lithuania", "age": 22 },
+      { "nickname": "afro", "full_name": "Aurélien Drapier", "nationality": "France", "age": 25 },
+      { "nickname": "Gizmy", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "AZUWU", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "NRG",
+    "region": "North America",
+    "players": [
+      { "nickname": "nitr0", "full_name": "Nicholas Cannella", "nationality": "USA", "age": 29 },
+      { "nickname": "Sonic", "full_name": "Aran Groesbeek", "nationality": "South Africa", "age": 27 },
+      { "nickname": "oSee", "full_name": "Joshua Ohm", "nationality": "USA", "age": 26 },
+      { "nickname": "Grim", "full_name": "Michael Wince", "nationality": "USA", "age": 24 },
+      { "nickname": "br0", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "HOTU",
+    "region": "CIS",
+    "players": [
+      { "nickname": "n0rb3r7", "full_name": "David Danielyan", "nationality": "Kazakhstan", "age": 23 },
+      { "nickname": "dukefissura", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "mizu", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "kAlash", "full_name": "Kamil Amirov", "nationality": "Kazakhstan", "age": 30 },
+      { "nickname": "frontales", "full_name": null, "nationality": null, "age": null }
+    ]
+  },
+  {
+    "team_name": "BetBoom",
+    "region": "CIS",
+    "players": [
+      { "nickname": "Boombl4", "full_name": "Kirill Mikhailov", "nationality": "Russia", "age": 26 },
+      { "nickname": "S1ren", "full_name": null, "nationality": "Russia", "age": null },
+      { "nickname": "d1Ledez", "full_name": null, "nationality": "Russia", "age": null },
+      { "nickname": "ArtFr0st", "full_name": null, "nationality": "Russia", "age": null },
+      { "nickname": "Magnojez", "full_name": null, "nationality": "Russia", "age": null }
+    ]
+  },
+  {
+    "team_name": "Passion UA",
+    "region": "Europe",
+    "players": [
+      { "nickname": "JT", "full_name": "Johnny Theodosiou", "nationality": "South Africa", "age": 26 },
+      { "nickname": "try", "full_name": null, "nationality": "Argentina", "age": null },
+      { "nickname": "Senzu", "full_name": null, "nationality": "Mongolia", "age": null },
+      { "nickname": "Kvem", "full_name": null, "nationality": "Ukraine", "age": null },
+      { "nickname": "nicx", "full_name": null, "nationality": "Ukraine", "age": null }
+    ]
+  },
+  {
+    "team_name": "MIBR",
+    "region": "South America",
+    "players": [
+      { "nickname": "LNZ", "full_name": "Linus Holtäng", "nationality": "Sweden", "age": 22 },
+      { "nickname": "brnz4n", "full_name": null, "nationality": "Brazil", "age": null },
+      { "nickname": "insani", "full_name": null, "nationality": "Brazil", "age": null },
+      { "nickname": "venomzera", "full_name": null, "nationality": "Brazil", "age": null },
+      { "nickname": "kl1m", "full_name": null, "nationality": "Brazil", "age": null }
+    ]
+  },
+  {
+    "team_name": "9z",
+    "region": "South America",
+    "players": [
+      { "nickname": "max", "full_name": "Maximiliano Gonzalez", "nationality": "Argentina", "age": 23 },
+      { "nickname": "dgt", "full_name": "Antonio Silva", "nationality": "Uruguay", "age": 24 },
+      { "nickname": "meyern", "full_name": "Ignacio Meyer", "nationality": "Argentina", "age": 23 },
+      { "nickname": "luchov", "full_name": null, "nationality": "Argentina", "age": null },
+      { "nickname": "HUASOPEEK", "full_name": null, "nationality": "Chile", "age": null }
+    ]
+  },
+  {
+    "team_name": "BC.Game",
+    "region": "Europe",
+    "players": [
+      { "nickname": "MUTiRiS", "full_name": "Christopher Fernandes", "nationality": "Portugal", "age": 32 },
+      { "nickname": "s1mple", "full_name": "Oleksandr Kostyliev", "nationality": "Ukraine", "age": 28 },
+      { "nickname": "electroNic", "full_name": "Denis Sharipov", "nationality": "Russia", "age": 27 },
+      { "nickname": "aragornN", "full_name": null, "nationality": null, "age": null },
+      { "nickname": "krazy", "full_name": null, "nationality": null, "age": null }
     ]
   }
 ]

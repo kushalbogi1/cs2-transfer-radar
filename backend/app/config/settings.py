@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     seed_roles_path: str = str(BASE_DIR / "data" / "seed_roles.json")
     candidate_pool_path: str = str(BASE_DIR / "data" / "candidate_pool.json")
     player_stats_path: str = str(BASE_DIR / "data" / "player_stats.json")
+    team_tiers_path: str = str(BASE_DIR / "data" / "team_tiers.json")
+    player_statuses_path: str = str(BASE_DIR / "data" / "player_statuses.json")
 
     model_config = SettingsConfigDict(
         env_file=".env",

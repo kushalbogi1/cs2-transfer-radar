@@ -8,6 +8,7 @@ import Simulator from "./pages/Simulator";
 import TeamPage from "./pages/TeamPage";
 import Teams from "./pages/Teams";
 import TransferBattle from "./pages/TransferBattle";
+import Predictions from "./pages/Predictions";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/simulator" element={<Simulator />} />
             <Route path="/dream-team" element={<DreamTeam />} />
             <Route path="/transfer-battle" element={<TransferBattle />} />
+            <Route path="/predictions" element={<Predictions />} />
           </Routes>
         </main>
       </div>

@@ -4,9 +4,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session, joinedload
 
+from app.api.routes.best_move import get_best_moves_for_team
 from app.db.database import get_db
 from app.db.models import Player, Team, TeamRoster
-
 
 router = APIRouter(prefix="/teams", tags=["team-analysis"])
 
@@ -100,7 +100,6 @@ def analyze_firepower(players: list[Player]) -> dict:
 
 
 def compute_roster_health(role_score: float, firepower_balance_score: float, avg_strength: float) -> float:
-    # Role structure matters most for this phase.
     return round((role_score * 0.5) + (firepower_balance_score * 0.25) + (avg_strength * 0.25), 2)
 
 
@@ -116,6 +115,34 @@ def get_health_label(score: float) -> str:
     return "Rebuild recommended"
 
 
+def identify_weak_link(players: list[Player]) -> dict | None:
+    if not players:
+        return None
+
+    ranked = sorted(
+        players,
+        key=lambda p: (
+            (p.strength_score if p.strength_score is not None else -1),
+            p.nickname.lower(),
+        )
+    )
+
+    weakest = ranked[0]
+    role = weakest.role_assignment.primary_role if weakest.role_assignment else None
+
+    return {
+        "id": weakest.id,
+        "nickname": weakest.nickname,
+        "role": role,
+        "strength_score": weakest.strength_score,
+        "reason": (
+            f"{weakest.nickname} appears to be the weakest current piece on raw strength score."
+            if weakest.strength_score is not None
+            else f"{weakest.nickname} appears weakest because no reliable strength score is available."
+        ),
+    }
+
+
 def suggest_action(role_analysis: dict, firepower_analysis: dict, avg_strength: float) -> str:
     if role_analysis["missing_roles"]:
         return f"Fix missing role coverage first: {', '.join(role_analysis['missing_roles'])}."
@@ -128,7 +155,7 @@ def suggest_action(role_analysis: dict, firepower_analysis: dict, avg_strength: 
     return "No immediate roster change needed."
 
 
-def build_explanations(role_analysis: dict, firepower_analysis: dict, avg_strength: float) -> list[str]:
+def build_explanations(role_analysis: dict, firepower_analysis: dict, avg_strength: float, weak_link: dict | None) -> list[str]:
     explanations = []
 
     if role_analysis["missing_roles"]:
@@ -158,7 +185,32 @@ def build_explanations(role_analysis: dict, firepower_analysis: dict, avg_streng
     else:
         explanations.append("This roster looks weak on raw firepower.")
 
+    if weak_link:
+        explanations.append(weak_link["reason"])
+
     return explanations
+
+
+def build_instability_reasons(role_analysis: dict, firepower_analysis: dict, weak_link: dict | None) -> list[str]:
+    reasons = []
+
+    if role_analysis["missing_roles"]:
+        reasons.append(f"Missing role coverage: {', '.join(role_analysis['missing_roles'])}.")
+    if role_analysis["duplicate_roles"]:
+        reasons.append(f"Role overlap: {', '.join(role_analysis['duplicate_roles'])}.")
+    if firepower_analysis["balance_label"] in {"Top-heavy", "Very top-heavy"}:
+        reasons.append(
+            f"Firepower is {firepower_analysis['balance_label'].lower()} with a spread of {firepower_analysis['spread']}."
+        )
+    if weak_link:
+        reasons.append(
+            f"Weakest current player appears to be {weak_link['nickname']} ({weak_link['role'] or 'Unknown role'})."
+        )
+
+    if not reasons:
+        reasons.append("No major structural instability detected.")
+
+    return reasons
 
 
 @router.get("/{team_id}/analysis")
@@ -167,6 +219,8 @@ def get_team_analysis(team_id: int, db: Session = Depends(get_db)):
 
     role_analysis = analyze_role_structure(players)
     firepower_analysis = analyze_firepower(players)
+    weak_link = identify_weak_link(players)
+
     roster_health_score = compute_roster_health(
         role_analysis["score"],
         firepower_analysis["balance_score"],
@@ -183,7 +237,19 @@ def get_team_analysis(team_id: int, db: Session = Depends(get_db)):
         role_analysis,
         firepower_analysis,
         firepower_analysis["average_strength"],
+        weak_link,
     )
+    instability_reasons = build_instability_reasons(
+        role_analysis,
+        firepower_analysis,
+        weak_link,
+    )
+
+    try:
+        best_moves = get_best_moves_for_team(team_id, db)
+        suggested_moves = best_moves.get("top_moves", [])
+    except Exception:
+        suggested_moves = []
 
     return {
         "team": {
@@ -194,6 +260,9 @@ def get_team_analysis(team_id: int, db: Session = Depends(get_db)):
         "label": label,
         "role_structure": role_analysis,
         "firepower": firepower_analysis,
+        "weak_link": weak_link,
+        "instability_reasons": instability_reasons,
         "suggested_action": suggested_action,
         "explanations": explanations,
+        "suggested_moves": suggested_moves,
     }

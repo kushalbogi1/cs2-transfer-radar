@@ -1,105 +1,265 @@
 [
-  {
-    "nickname": "ZywOo",
-    "primary_role": "AWPer",
-    "secondary_role": "Star Rifler"
-  },
-  {
-    "nickname": "apEX",
-    "primary_role": "IGL",
-    "secondary_role": "Entry"
-  },
-  {
-    "nickname": "flameZ",
-    "primary_role": "Entry",
-    "secondary_role": "Support"
-  },
-  {
-    "nickname": "Spinx",
-    "primary_role": "Lurker",
-    "secondary_role": "Star Rifler"
-  },
-  {
-    "nickname": "mezii",
-    "primary_role": "Support",
-    "secondary_role": "Anchor"
-  },
+  { "nickname": "apEX", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "ropz", "primary_role": "Lurker", "secondary_role": "Star Rifler" },
+  { "nickname": "ZywOo", "primary_role": "AWPer", "secondary_role": "Star Rifler" },
+  { "nickname": "flameZ", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "mezii", "primary_role": "Support", "secondary_role": "Anchor" },
 
-  {
-    "nickname": "donk",
-    "primary_role": "Entry",
-    "secondary_role": "Star Rifler"
-  },
-  {
-    "nickname": "sh1ro",
-    "primary_role": "AWPer",
-    "secondary_role": null
-  },
-  {
-    "nickname": "zont1x",
-    "primary_role": "Lurker",
-    "secondary_role": "Support"
-  },
-  {
-    "nickname": "magixx",
-    "primary_role": "Support",
-    "secondary_role": "Anchor"
-  },
-  {
-    "nickname": "chopper",
-    "primary_role": "IGL",
-    "secondary_role": "Support"
-  },
+  { "nickname": "FalleN", "primary_role": "AWPer", "secondary_role": "IGL" },
+  { "nickname": "yuurih", "primary_role": "Anchor", "secondary_role": "Support" },
+  { "nickname": "YEKINDAR", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "KSCERATO", "primary_role": "Anchor", "secondary_role": "Star Rifler" },
+  { "nickname": "molodoy", "primary_role": "Rifler", "secondary_role": "Support" },
 
-  {
-    "nickname": "huNter-",
-    "primary_role": "Lurker",
-    "secondary_role": "Support"
-  },
-  {
-    "nickname": "NiKo",
-    "primary_role": "Entry",
-    "secondary_role": "Star Rifler"
-  },
-  {
-    "nickname": "m0NESY",
-    "primary_role": "AWPer",
-    "secondary_role": null
-  },
-  {
-    "nickname": "HooXi",
-    "primary_role": "IGL",
-    "secondary_role": "Support"
-  },
-  {
-    "nickname": "nexa",
-    "primary_role": "Support",
-    "secondary_role": "Anchor"
-  },
+  { "nickname": "Brollan", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "torzsi", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "Spinx", "primary_role": "Star Rifler", "secondary_role": "Lurker" },
+  { "nickname": "Jimpphat", "primary_role": "Anchor", "secondary_role": "Support" },
+  { "nickname": "xertioN", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
 
-  {
-    "nickname": "siuhy",
-    "primary_role": "IGL",
-    "secondary_role": "Support"
-  },
-  {
-    "nickname": "jL",
-    "primary_role": "Entry",
-    "secondary_role": "Lurker"
-  },
-  {
-    "nickname": "broky",
-    "primary_role": "AWPer",
-    "secondary_role": null
-  },
-  {
-    "nickname": "NAF",
-    "primary_role": "Lurker",
-    "secondary_role": "Support"
-  },
-  {
-    "nickname": "rain",
-    "primary_role": "Entry",
-    "secondary_role": "Support"
-  }
+  { "nickname": "NiKo", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "TeSeS", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "m0NESY", "primary_role": "AWPer", "secondary_role": "Star Rifler" },
+  { "nickname": "kyxsan", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "kyousuke", "primary_role": "Rifler", "secondary_role": "Entry" },
+
+  { "nickname": "Jame", "primary_role": "AWPer", "secondary_role": "IGL" },
+  { "nickname": "BELCHONOKK", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "xiELO", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "nota", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "zweih", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+
+  { "nickname": "Aleksib", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "iM", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "b1t", "primary_role": "Anchor", "secondary_role": "Star Rifler" },
+  { "nickname": "w0nderful", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "makazze", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "MAJ3R", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "XANTARES", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "woxic", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "soulfly", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "Wicadia", "primary_role": "Entry", "secondary_role": "Support" },
+
+  { "nickname": "sh1ro", "primary_role": "AWPer", "secondary_role": "Star Rifler" },
+  { "nickname": "magixx", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "tN1R", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "zont1x", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "donk", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+
+  { "nickname": "bLitz", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "Techno", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "mzinho", "primary_role": "Entry", "secondary_role": "Star Rifler" },
+  { "nickname": "910", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "cobrazera", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "HooXi", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "phzy", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "jabbi", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "Staehr", "primary_role": "Rifler", "secondary_role": "Anchor" },
+  { "nickname": "ryu", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "karrigan", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "frozen", "primary_role": "Star Rifler", "secondary_role": "Lurker" },
+  { "nickname": "Twistzz", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "broky", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "jcobbb", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "dem0n", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "lauNX", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "Krabeni", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "cmtry", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "dziugss", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "huNter-", "primary_role": "Star Rifler", "secondary_role": "Support" },
+  { "nickname": "NertZ", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "SunPayus", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "HeavyGod", "primary_role": "Entry", "secondary_role": "Star Rifler" },
+  { "nickname": "MATYS", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+
+  { "nickname": "Maka", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "Lucky", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "misutaaa", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "Ex3rcice", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "Graviti", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "arT", "primary_role": "IGL", "secondary_role": "Entry" },
+  { "nickname": "dumau", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "latto", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "n1ssim", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "saadzin", "primary_role": "Rifler", "secondary_role": "Entry" },
+
+  { "nickname": "Snax", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "REZ", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "Tauson", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "PR", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "hypex", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "vsm", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "biguzera", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "piriajr", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "nqz", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "snow", "primary_role": "Rifler", "secondary_role": "Entry" },
+
+  { "nickname": "xfl0ud", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "nilo", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "susp", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "Chr1zN", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "Alkaren", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "alex666", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "npl", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "kensizor", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "esenthial", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "s1zzi", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "NAF", "primary_role": "Anchor", "secondary_role": "Support" },
+  { "nickname": "EliGE", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "malbsMd", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "siuhy", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "ultimate", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "alex", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "mopoz", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "sausol", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "dav1g", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "MartinezSa", "primary_role": "AWPer", "secondary_role": "Support" },
+
+  { "nickname": "Snappi", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "sjuush", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "r1nkle", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "xKacpersky", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "cairne", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "Rainwaker", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "Bymas", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "afro", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "Gizmy", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "AZUWU", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "nitr0", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "Sonic", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "oSee", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "Grim", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "br0", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "Boombl4", "primary_role": "IGL", "secondary_role": "Entry" },
+  { "nickname": "S1ren", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "d1Ledez", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "ArtFr0st", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "Magnojez", "primary_role": "Entry", "secondary_role": "Support" },
+
+  { "nickname": "JT", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "try", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "Senzu", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "Kvem", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "nicx", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "MUTiRiS", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "s1mple", "primary_role": "AWPer", "secondary_role": "Star Rifler" },
+  { "nickname": "electroNic", "primary_role": "Entry", "secondary_role": "Star Rifler" },
+  { "nickname": "aragornN", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "krazy", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "jks", "primary_role": "Anchor", "secondary_role": "Support" },
+  { "nickname": "cadiaN", "primary_role": "AWPer", "secondary_role": "IGL" },
+  { "nickname": "device", "primary_role": "AWPer", "secondary_role": "Star Rifler" },
+  { "nickname": "tabseN", "primary_role": "IGL", "secondary_role": "Rifler" },
+
+  { "nickname": "Perfecto", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "Buzz", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "es3tag", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "Plopski", "primary_role": "Entry", "secondary_role": "Rifler" },
+  { "nickname": "roeJ", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "farlig", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "coldzera", "primary_role": "Star Rifler", "secondary_role": "Lurker" },
+  { "nickname": "boltz", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "felps", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "HEN1", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "LUCAS1", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "shox", "primary_role": "Lurker", "secondary_role": "Rifler" },
+
+  { "nickname": "Maden", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "Jeorge", "primary_role": "Rifler", "secondary_role": "Support" },
+
+
+  { "nickname": "n0rb3r7", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "dukefissura", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "mizu", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "kAlash", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "frontales", "primary_role": "AWPer", "secondary_role": "Support" },
+
+  { "nickname": "LNZ", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "brnz4n", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "insani", "primary_role": "Entry", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "venomzera", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "kl1m", "primary_role": "Rifler", "secondary_role": "Support" },
+
+  { "nickname": "max", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "dgt", "primary_role": "Entry", "secondary_role": "Star Rifler" },
+  { "nickname": "meyern", "primary_role": "Star Rifler", "secondary_role": "Lurker" },
+  { "nickname": "luchov", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "HUASOPEEK", "primary_role": "AWPer", "secondary_role": "Support" },
+
+  { "nickname": "JDC", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "faveN", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "blameF", "primary_role": "Lurker", "secondary_role": "Star Rifler" },
+  { "nickname": "gr1ks", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "slaxz-", "primary_role": "AWPer", "secondary_role": "Support" },
+
+  { "nickname": "Swisher", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "s1n", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "JBa", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "Lake", "primary_role": "Rifler", "secondary_role": "Support" },
+  { "nickname": "mantuu", "primary_role": "AWPer", "secondary_role": "Support" },
+
+  { "nickname": "f1ku", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "volt", "primary_role": "Rifler", "secondary_role": "Entry" },
+  { "nickname": "Keoz", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "Thomas", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "acoR", "primary_role": "AWPer", "secondary_role": "Support" },
+
+  { "nickname": "nicoodoz", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "headtr1ck", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "bodyy", "primary_role": "IGL", "secondary_role": "Support" },
+
+  { "nickname": "dupreeh", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "Xyp9x", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "olofmeister", "primary_role": "Lurker", "secondary_role": "Star Rifler" },
+  { "nickname": "JW", "primary_role": "AWPer", "secondary_role": "Aggressive Rifler" },
+  { "nickname": "flusha", "primary_role": "Lurker", "secondary_role": "Support" },
+
+  { "nickname": "GeT_RiGhT", "primary_role": "Lurker", "secondary_role": "Anchor" },
+  { "nickname": "f0rest", "primary_role": "Star Rifler", "secondary_role": "AWPer" },
+  { "nickname": "friberg", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "pronax", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "dennis", "primary_role": "Entry", "secondary_role": "Rifler" },
+
+  { "nickname": "allu", "primary_role": "AWPer", "secondary_role": "IGL" },
+  { "nickname": "GuardiaN", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "seized", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "Zeus", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "Dosia", "primary_role": "Lurker", "secondary_role": "Support" },
+
+  { "nickname": "AdreN", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "Happy", "primary_role": "IGL", "secondary_role": "Lurker" },
+  { "nickname": "RpK", "primary_role": "Anchor", "secondary_role": "Support" },
+  { "nickname": "SmithZz", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "kennyS", "primary_role": "AWPer", "secondary_role": "Aggressive Rifler" },
+
+  { "nickname": "pashaBiceps", "primary_role": "Star Rifler", "secondary_role": "Entry" },
+  { "nickname": "TaZ", "primary_role": "IGL", "secondary_role": "Support" },
+  { "nickname": "NEO", "primary_role": "IGL", "secondary_role": "Star Rifler" },
+  { "nickname": "byali", "primary_role": "Entry", "secondary_role": "Star Rifler" },
+  { "nickname": "TACO", "primary_role": "Support", "secondary_role": "Anchor" },
+
+  { "nickname": "fnx", "primary_role": "Lurker", "secondary_role": "Star Rifler" },
+  { "nickname": "tarik", "primary_role": "Entry", "secondary_role": "Star Rifler" },
+  { "nickname": "n0thing", "primary_role": "Lurker", "secondary_role": "Support" },
+  { "nickname": "Skadoodle", "primary_role": "AWPer", "secondary_role": "Support" },
+  { "nickname": "ptr", "primary_role": "AWPer", "secondary_role": "Support" },
+
+  { "nickname": "Edward", "primary_role": "Entry", "secondary_role": "Support" },
+  { "nickname": "kioShiMa", "primary_role": "Support", "secondary_role": "Anchor" },
+  { "nickname": "cajunb", "primary_role": "AWPer", "secondary_role": "Support" }
 ]

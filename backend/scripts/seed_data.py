@@ -1,7 +1,10 @@
 from app.db.database import Base, SessionLocal, engine
-from app.db.models import CandidatePool, Player, PlayerRole, Team, TeamRoster  # noqa: F401
-from app.ingestion.pipelines import ingest_seed_teams, seed_candidate_pool, seed_roles
-from app.config.settings import settings
+from app.ingestion.pipelines import (
+    ingest_player_statuses,
+    ingest_seed_roles,
+    ingest_seed_teams,
+    ingest_team_tiers,
+)
 
 
 def main():
@@ -13,10 +16,13 @@ def main():
         print(ingest_seed_teams(db))
 
         print("Running role seeding...")
-        print(seed_roles(db, settings.seed_roles_path))
+        print(ingest_seed_roles(db))
 
-        print("Running candidate pool seeding...")
-        print(seed_candidate_pool(db, settings.candidate_pool_path))
+        print("Running team tier seeding...")
+        print(ingest_team_tiers(db))
+
+        print("Running player status seeding...")
+        print(ingest_player_statuses(db))
 
         print("Seed setup complete.")
     finally:

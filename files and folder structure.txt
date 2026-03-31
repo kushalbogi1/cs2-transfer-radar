@@ -1,0 +1,121 @@
+cs2-analytics/
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   │
+│   │   ├── api/
+│   │   │   └── routes/
+│   │   │       ├── dashboard.py
+│   │   │       ├── teams.py
+│   │   │       ├── players.py
+│   │   │       ├── simulator.py
+│   │   │       ├── suggestions.py
+│   │   │       ├── best_move.py
+│   │   │       ├── player_stats.py
+│   │   │       ├── trasfer_battle.py
+│   │   │       ├── team_analysis.py
+│   │   │       ├── dream_team.py
+│   │   │
+│   │   ├── ingestion/
+│   │   │   └── pipelines.py
+│   │   │   └── candidate_generation.py
+│   │   │   └── stat_pipelines.py
+│   │   │   └── hltv_scraper.py
+│   │   │
+│   │   ├── db/
+│   │   │   ├── database.py
+│   │   │   ├── models.py
+│   │   │   └── (optional: base.py if separated)
+│   │   │
+│   │   ├── services/
+│   │   │
+│   │   └── config/
+│   │       └── settings.py
+│   │
+│   ├── scripts/
+│   │   ├── create_tables.py
+│   │   ├── seed_data.py
+│   │   ├── ingest_player_stats.py
+│   │   ├── generate_candidates.py
+│   │   ├── seed_candidate_pool.py
+│   │   ├── seed_roles.py
+│   │   ├── run_ingestion.py
+│   │
+│   ├── data/
+│   │   ├── player_statuses.json
+│   │   ├── team_tiers.json
+│   │   ├── player_stats.json
+│   │   ├── seed_teams.json
+│   │   ├── candidate_pool.json
+│   │   ├── seed_roles.json
+│   │
+│   ├── requirements.txt
+│   ├── .gitignore
+│   ├── .env
+│   └── .venv/   (local only)
+│
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── api.ts
+│   │   │
+│   │   ├── components/
+│   │   │   ├── Badge.tsx
+│   │   │   ├── NavBar.tsx
+│   │   │   ├── TeamCard.tsx
+│   │   │   └── (shared UI)
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Home.tsx
+│   │   │   ├── Teams.tsx
+│   │   │   ├── Teampage.tsx
+│   │   │   ├── Players.tsx
+│   │   │   ├── Simulator.tsx
+│   │   │   ├── TransferBattle.tsx
+│   │   │   ├── DreamTeam.tsx
+│   │   │   ├── PlayerPage.tsx
+│   │   │
+│   │   ├── styles/
+│   │   │   └── (global styles if any)
+│   │   │
+│   │   ├── App.tsx
+│   │   ├── App.css
+│   │   ├── main.tsx
+│   │   ├── index.css
+│   │
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── .env
+│
+│
+├── data/
+│   ├── raw/
+│   │   └── (future scraping outputs)
+│   │
+│   ├── processed/
+│   │   └── (optional cleaned datasets)
+│   │
+│   ├── seed/
+│   │   ├── teams.json
+│   │   ├── players.json
+│   │   ├── player_roles.json
+│   │   ├── player_statuses.json
+│   │   └── (optional: player_stats.json)
+│
+│
+├── infra/
+│   ├── render/
+│   │   └── (optional config)
+│   │
+│   ├── vercel/
+│   │   └── (optional config)
+│   │
+│   └── (future: docker / ci-cd)
+│
+│
+├── README.md
+├── .gitignore
+└── package-lock.json (if present)

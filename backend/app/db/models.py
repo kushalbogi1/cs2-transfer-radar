@@ -1,5 +1,5 @@
-from sqlalchemy import Boolean, Column, Float, ForeignKey, Integer, String, UniqueConstraint
-from sqlalchemy.orm import relationship
+from sqlalchemy import Boolean, Float, ForeignKey, Integer, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.database import Base
 
@@ -7,80 +7,86 @@ from app.db.database import Base
 class Team(Base):
     __tablename__ = "teams"
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, nullable=False, index=True)
-    slug = Column(String, unique=True, nullable=False, index=True)
-    region = Column(String, nullable=True)
-    is_tracked = Column(Boolean, default=True, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    slug: Mapped[str | None] = mapped_column(String, unique=True, nullable=True)
+    region: Mapped[str | None] = mapped_column(String, nullable=True)
+    is_tracked: Mapped[bool] = mapped_column(Boolean, default=True)
+    competitive_tier: Mapped[str | None] = mapped_column(String, nullable=True)
 
-    rosters = relationship("TeamRoster", back_populates="team", cascade="all, delete-orphan")
+    rosters: Mapped[list["TeamRoster"]] = relationship("TeamRoster", back_populates="team")
 
 
 class Player(Base):
     __tablename__ = "players"
 
-    id = Column(Integer, primary_key=True, index=True)
-    nickname = Column(String, unique=True, nullable=False, index=True)
-    full_name = Column(String, nullable=True)
-    nationality = Column(String, nullable=True)
-    age = Column(Integer, nullable=True)
-    strength_score = Column(Float, nullable=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    nickname: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    full_name: Mapped[str | None] = mapped_column(String, nullable=True)
+    nationality: Mapped[str | None] = mapped_column(String, nullable=True)
+    age: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
-    roster_entries = relationship("TeamRoster", back_populates="player", cascade="all, delete-orphan")
-    role_assignment = relationship("PlayerRole", back_populates="player", uselist=False, cascade="all, delete-orphan")
-    candidate_entry = relationship("CandidatePool", back_populates="player", uselist=False, cascade="all, delete-orphan")
-    snapshots = relationship("PlayerSnapshot", back_populates="player", cascade="all, delete-orphan")
+    strength_score: Mapped[float | None] = mapped_column(Float, nullable=True)
+    status: Mapped[str | None] = mapped_column(String, nullable=True)  # active, bench, free_agent, inactive
+    market_value_tier: Mapped[str | None] = mapped_column(String, nullable=True)  # elite, high, mid, low
+
+    roster_entries: Mapped[list["TeamRoster"]] = relationship("TeamRoster", back_populates="player")
+    role_assignment: Mapped["PlayerRole | None"] = relationship(
+        "PlayerRole",
+        back_populates="player",
+        uselist=False,
+    )
+    stat_snapshots: Mapped[list["PlayerSnapshot"]] = relationship("PlayerSnapshot", back_populates="player")
+    candidate_entries: Mapped[list["CandidatePool"]] = relationship("CandidatePool", back_populates="player")
 
 
 class TeamRoster(Base):
     __tablename__ = "team_rosters"
-    __table_args__ = (
-        UniqueConstraint("team_id", "player_id", name="uq_team_player"),
-    )
 
-    id = Column(Integer, primary_key=True, index=True)
-    team_id = Column(Integer, ForeignKey("teams.id"), nullable=False)
-    player_id = Column(Integer, ForeignKey("players.id"), nullable=False)
-    is_active = Column(Boolean, default=True, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    team_id: Mapped[int] = mapped_column(ForeignKey("teams.id"), nullable=False)
+    player_id: Mapped[int] = mapped_column(ForeignKey("players.id"), nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
 
-    team = relationship("Team", back_populates="rosters")
-    player = relationship("Player", back_populates="roster_entries")
+    team: Mapped["Team"] = relationship("Team", back_populates="rosters")
+    player: Mapped["Player"] = relationship("Player", back_populates="roster_entries")
 
 
 class PlayerRole(Base):
     __tablename__ = "player_roles"
 
-    id = Column(Integer, primary_key=True, index=True)
-    player_id = Column(Integer, ForeignKey("players.id"), nullable=False, unique=True)
-    primary_role = Column(String, nullable=False)
-    secondary_role = Column(String, nullable=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    player_id: Mapped[int] = mapped_column(ForeignKey("players.id"), unique=True, nullable=False)
+    primary_role: Mapped[str | None] = mapped_column(String, nullable=True)
+    secondary_role: Mapped[str | None] = mapped_column(String, nullable=True)
 
-    player = relationship("Player", back_populates="role_assignment")
-
-
-class CandidatePool(Base):
-    __tablename__ = "candidate_pool"
-
-    id = Column(Integer, primary_key=True, index=True)
-    player_id = Column(Integer, ForeignKey("players.id"), nullable=False, unique=True)
-    source = Column(String, nullable=False, default="manual_seed")
-    score = Column(Float, nullable=True)
-
-    player = relationship("Player", back_populates="candidate_entry")
+    player: Mapped["Player"] = relationship("Player", back_populates="role_assignment")
 
 
 class PlayerSnapshot(Base):
     __tablename__ = "player_snapshots"
 
-    id = Column(Integer, primary_key=True, index=True)
-    player_id = Column(Integer, ForeignKey("players.id"), nullable=False, index=True)
-    source = Column(String, nullable=False, default="manual_import")
-    snapshot_date = Column(String, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    player_id: Mapped[int] = mapped_column(ForeignKey("players.id"), nullable=False)
 
-    rating = Column(Float, nullable=True)
-    impact = Column(Float, nullable=True)
-    adr = Column(Float, nullable=True)
-    kast = Column(Float, nullable=True)
-    maps_played = Column(Integer, nullable=True)
+    source: Mapped[str] = mapped_column(String, nullable=False)
+    snapshot_date: Mapped[str] = mapped_column(String, nullable=False)
 
-    player = relationship("Player", back_populates="snapshots")
+    rating: Mapped[float | None] = mapped_column(Float, nullable=True)
+    impact: Mapped[float | None] = mapped_column(Float, nullable=True)
+    adr: Mapped[float | None] = mapped_column(Float, nullable=True)
+    kast: Mapped[float | None] = mapped_column(Float, nullable=True)
+    maps_played: Mapped[int | None] = mapped_column(Integer, nullable=True)
+
+    player: Mapped["Player"] = relationship("Player", back_populates="stat_snapshots")
+
+
+class CandidatePool(Base):
+    __tablename__ = "candidate_pool"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    player_id: Mapped[int] = mapped_column(ForeignKey("players.id"), nullable=False)
+    source: Mapped[str] = mapped_column(String, nullable=False)
+    score: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    player: Mapped["Player"] = relationship("Player", back_populates="candidate_entries")

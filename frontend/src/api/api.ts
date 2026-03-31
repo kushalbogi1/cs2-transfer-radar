@@ -1,14 +1,16 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 
-//
-// Basic team types
-//
 export type Team = {
   id: number;
   name: string;
   slug: string;
   region: string | null;
   is_tracked: boolean;
+  competitive_tier?: string | null;
+  average_strength?: number | null;
+  active_players?: string[];
+  active_player_count?: number;
+  rank?: number;
 };
 
 export type TeamPlayer = {
@@ -26,12 +28,11 @@ export type TeamDetail = {
   name: string;
   slug: string;
   region: string | null;
+  competitive_tier?: string | null;
+  average_strength?: number | null;
   roster: TeamPlayer[];
 };
 
-//
-// Team analysis / rebuild meter
-//
 export type TeamAnalysis = {
   team: {
     id: number;
@@ -57,24 +58,21 @@ export type TeamAnalysis = {
   explanations: string[];
 };
 
-//
-// Player types
-//
 export type Player = {
   id: number;
   nickname: string;
-  full_name: string | null;
-  nationality: string | null;
-  age: number | null;
+  full_name?: string | null;
+  nationality?: string | null;
+  age?: number | null;
   role?: string | null;
-  team?: string | null;
-  strength_score?: number | null;
   primary_role?: string | null;
   secondary_role?: string | null;
-  current_team?: {
-    team_id: number;
-    team_name: string;
-  } | null;
+  strength_score?: number | null;
+  current_rating?: number | null;
+  team?: string | null;
+  status?: string | null;
+  market_value_tier?: string | null;
+  rank?: number;
 };
 
 export type PlayerStatsResponse = {
@@ -106,22 +104,24 @@ export type PlayerStatsResponse = {
   }[];
 };
 
-//
-// Candidate / suggestions
-//
 export type Candidate = {
   player_id: number;
   nickname: string;
   role: string | null;
+  secondary_role?: string | null;
   source: string;
   score: number | null;
   strength_score: number | null;
+  status?: string | null;
+  market_value_tier?: string | null;
+  team?: string | null;
 };
 
 export type SuggestionResponse = {
   team: {
     id: number;
     name: string;
+    competitive_tier?: string | null;
   };
   outgoing_player: {
     id: number;
@@ -130,6 +130,7 @@ export type SuggestionResponse = {
     secondary_role: string | null;
     strength_score: number | null;
   };
+  candidate_mode: "available_only" | "active_targets" | "all";
   suggestions: {
     player_id: number;
     nickname: string;
@@ -137,12 +138,13 @@ export type SuggestionResponse = {
     secondary_role: string | null;
     strength_score: number | null;
     fit_score: number;
+    status: string | null;
+    market_value_tier: string | null;
+    candidate_team: string | null;
+    candidate_team_tier: string | null;
   }[];
 };
 
-//
-// Simulator
-//
 export type SimulationResponse = {
   team: {
     id: number;
@@ -213,14 +215,12 @@ export type SimulationResponse = {
   explanations: string[];
 };
 
-//
-// Dream team
-//
 export type DreamTeamResponse = {
   selected_players: {
     id: number;
     nickname: string;
     role: string | null;
+    secondary_role?: string | null;
     strength_score: number | null;
   }[];
   role_balance: {
@@ -243,9 +243,6 @@ export type DreamTeamResponse = {
   explanations: string[];
 };
 
-//
-// Transfer battle
-//
 export type TransferBattleResponse = {
   team: {
     id: number;
@@ -261,9 +258,6 @@ export type TransferBattleResponse = {
   };
 };
 
-//
-// Best move
-//
 export type BestMoveResponse = {
   team: {
     id: number;
@@ -293,55 +287,49 @@ export type BestMoveResponse = {
   };
 };
 
-//
-// Dashboard
-//
 export type DashboardOverview = {
   counts: {
     teams: number;
     players: number;
   };
-  strongest_player: {
+  strongest_player?: {
     id: number;
     nickname: string;
-    strength_score: number | null;
+    strength_score: number;
+    current_rating?: number | null;
+    primary_role?: string | null;
+    secondary_role?: string | null;
+    team?: string | null;
+    status?: string | null;
+    market_value_tier?: string | null;
+    rank?: number;
   } | null;
-  most_unstable_team: {
-    team: {
-      id: number;
-      name: string;
-    };
-    roster_health_score: number;
-    label: string;
-    suggested_action: string;
-  } | null;
-  featured_best_move: {
-    team: {
-      id: number;
-      name: string;
-    };
-    move: {
-      outgoing_player: {
-        id: number;
-        nickname: string;
-        role: string | null;
-        strength_score: number | null;
-      };
-      incoming_player: {
-        id: number;
-        nickname: string;
-        role: string | null;
-        strength_score: number | null;
-        fit_score: number;
-      };
-      projection: SimulationResponse;
-    };
-  } | null;
+  top_players?: Array<{
+    id: number;
+    nickname: string;
+    strength_score: number;
+    current_rating?: number | null;
+    primary_role?: string | null;
+    secondary_role?: string | null;
+    team?: string | null;
+    status?: string | null;
+    market_value_tier?: string | null;
+    rank?: number;
+  }>;
+  top_teams?: Array<{
+    id: number;
+    name: string;
+    region?: string | null;
+    competitive_tier?: string | null;
+    average_strength?: number | null;
+    active_players?: string[];
+    rank?: number;
+  }>;
+  most_unstable_team?: any;
+  featured_best_move?: any;
 };
 
-//
-// Teams
-//
+
 export async function fetchTeams(): Promise<Team[]> {
   const res = await fetch(`${API_BASE_URL}/teams/`);
   if (!res.ok) throw new Error("Failed to fetch teams");
@@ -360,9 +348,6 @@ export async function fetchTeamAnalysis(teamId: number): Promise<TeamAnalysis> {
   return res.json();
 }
 
-//
-// Players
-//
 export async function fetchPlayers(): Promise<Player[]> {
   const res = await fetch(`${API_BASE_URL}/players/`);
   if (!res.ok) throw new Error("Failed to fetch players");
@@ -381,27 +366,26 @@ export async function fetchPlayerStats(playerId: number): Promise<PlayerStatsRes
   return res.json();
 }
 
-//
-// Candidates / suggestions
-//
-export async function fetchCandidates(): Promise<Candidate[]> {
-  const res = await fetch(`${API_BASE_URL}/simulator/candidates`);
+export async function fetchCandidates(
+  candidateMode: "available_only" | "active_targets" | "all" = "all"
+): Promise<Candidate[]> {
+  const res = await fetch(`${API_BASE_URL}/simulator/candidates?candidate_mode=${candidateMode}`);
   if (!res.ok) throw new Error("Failed to fetch candidates");
   return res.json();
 }
 
 export async function fetchSuggestions(
   teamId: number,
-  outgoingPlayerId: number
+  outgoingPlayerId: number,
+  candidateMode: "available_only" | "active_targets" | "all" = "available_only"
 ): Promise<SuggestionResponse> {
-  const res = await fetch(`${API_BASE_URL}/teams/${teamId}/suggestions/${outgoingPlayerId}`);
+  const res = await fetch(
+    `${API_BASE_URL}/teams/${teamId}/suggestions/${outgoingPlayerId}?candidate_mode=${candidateMode}`
+  );
   if (!res.ok) throw new Error("Failed to fetch suggestions");
   return res.json();
 }
 
-//
-// Simulator
-//
 export async function runSimulation(payload: {
   team_id: number;
   outgoing_player_id: number;
@@ -423,9 +407,6 @@ export async function runSimulation(payload: {
   return res.json();
 }
 
-//
-// Dream team
-//
 export async function runDreamTeam(payload: {
   player_ids: number[];
 }): Promise<DreamTeamResponse> {
@@ -445,9 +426,6 @@ export async function runDreamTeam(payload: {
   return res.json();
 }
 
-//
-// Transfer battle
-//
 export async function runTransferBattle(payload: {
   team_id: number;
   move_a: {
@@ -475,18 +453,12 @@ export async function runTransferBattle(payload: {
   return res.json();
 }
 
-//
-// Best move
-//
 export async function fetchBestMove(teamId: number): Promise<BestMoveResponse> {
   const res = await fetch(`${API_BASE_URL}/teams/${teamId}/best-move`);
   if (!res.ok) throw new Error("Failed to fetch best move");
   return res.json();
 }
 
-//
-// Dashboard
-//
 export async function fetchDashboardOverview(): Promise<DashboardOverview> {
   const res = await fetch(`${API_BASE_URL}/dashboard/overview`);
   if (!res.ok) throw new Error("Failed to fetch dashboard overview");

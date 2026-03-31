@@ -7,9 +7,9 @@ from sqlalchemy.orm import Session
 from app.db.models import Player, PlayerSnapshot
 
 
-def normalize_to_100(value: float, min_val: float, max_val: float) -> float:
+def normalize_to_100(value: float, min_val: float, max_val: float, default: float) -> float:
     if value is None:
-        return 70.0
+        value = default
     if max_val == min_val:
         return 70.0
     scaled = ((value - min_val) / (max_val - min_val)) * 100
@@ -23,20 +23,24 @@ def compute_strength_score(
     kast: float | None,
     maps_played: int | None,
 ) -> float:
-    rating_score = normalize_to_100(rating or 1.0, 0.8, 1.4)
-    impact_score = normalize_to_100(impact or 1.0, 0.7, 1.5)
-    adr_score = normalize_to_100(adr or 70.0, 50.0, 100.0)
-    kast_score = normalize_to_100(kast or 68.0, 55.0, 80.0)
-    maps_score = normalize_to_100(float(maps_played or 20), 0.0, 100.0)
+    rating_score = normalize_to_100(rating, 0.85, 1.35, 1.02)
+    impact_score = normalize_to_100(impact, 0.75, 1.35, 1.00)
+    adr_score = normalize_to_100(adr, 55.0, 95.0, 72.0)
+    kast_score = normalize_to_100(kast, 58.0, 78.0, 70.0)
+    maps_score = normalize_to_100(float(maps_played) if maps_played is not None else None, 0.0, 80.0, 25.0)
 
     strength = (
-        rating_score * 0.40 +
+        rating_score * 0.45 +
         impact_score * 0.20 +
         adr_score * 0.15 +
         kast_score * 0.15 +
-        maps_score * 0.10
+        maps_score * 0.05
     )
-    return round(strength, 2)
+
+    # Lift the score floor a bit so decent players do not collapse too low
+    strength = 45 + (strength * 0.55)
+
+    return round(min(100.0, max(0.0, strength)), 2)
 
 
 def ingest_player_stats(db: Session, stats_path: str) -> dict:

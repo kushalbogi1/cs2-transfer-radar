@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import Badge from "../components/Badge";
 import {
   fetchCandidates,
@@ -8,22 +9,31 @@ import {
   type Candidate,
   type Team,
   type TeamDetail,
-  type TransferBattleResponse,
 } from "../api/api";
 
 function getWinnerBadgeType(label: string): "success" | "warning" | "danger" | "info" | "neutral" {
   const v = label.toLowerCase();
-  if (v.includes("move a") || v.includes("move b")) return "success";
+  if (v.includes("move a")) return "success";
+  if (v.includes("move b")) return "info";
   if (v.includes("tie")) return "warning";
-  return "info";
+  return "neutral";
 }
 
 function getVerdictBadgeType(label: string): "success" | "warning" | "danger" | "info" | "neutral" {
   const v = label.toLowerCase();
-  if (v.includes("upgrade")) return "success";
+  if (v.includes("strong upgrade") || v.includes("upgrade")) return "success";
   if (v.includes("neutral")) return "warning";
   if (v.includes("downgrade")) return "danger";
   return "info";
+}
+
+function improvementLabel(value: number | null | undefined) {
+  if (value === null || value === undefined) return "N/A";
+  if (value >= 8) return "Major improvement";
+  if (value >= 3) return "Good improvement";
+  if (value > -3) return "Little change";
+  if (value > -8) return "Slight downgrade";
+  return "Major downgrade";
 }
 
 export default function TransferBattle() {
@@ -36,24 +46,25 @@ export default function TransferBattle() {
   const [moveAIncoming, setMoveAIncoming] = useState<number | "">("");
   const [moveBOutgoing, setMoveBOutgoing] = useState<number | "">("");
   const [moveBIncoming, setMoveBIncoming] = useState<number | "">("");
+  const [candidateSearch, setCandidateSearch] = useState("");
 
-  const [result, setResult] = useState<TransferBattleResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [teamLoading, setTeamLoading] = useState(false);
   const [battleLoading, setBattleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<any>(null);
 
   useEffect(() => {
     async function loadInitialData() {
       try {
         const [teamsData, candidatesData] = await Promise.all([
           fetchTeams(),
-          fetchCandidates(),
+          fetchCandidates("all"),
         ]);
         setTeams(teamsData);
         setCandidates(candidatesData);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
+        setError(err instanceof Error ? err.message : "Failed to load transfer battle");
       } finally {
         setLoading(false);
       }
@@ -64,22 +75,26 @@ export default function TransferBattle() {
 
   useEffect(() => {
     async function loadTeamDetail() {
+      setError(null);
+      setResult(null);
+      setMoveAOutgoing("");
+      setMoveAIncoming("");
+      setMoveBOutgoing("");
+      setMoveBIncoming("");
+      setCandidateSearch("");
+
       if (!selectedTeamId) {
         setTeamDetail(null);
         return;
       }
 
       setTeamLoading(true);
-      setResult(null);
 
       try {
         const data = await fetchTeam(Number(selectedTeamId));
         setTeamDetail(data);
-        setMoveAOutgoing("");
-        setMoveAIncoming("");
-        setMoveBOutgoing("");
-        setMoveBIncoming("");
       } catch (err) {
+        setTeamDetail(null);
         setError(err instanceof Error ? err.message : "Failed to load team roster");
       } finally {
         setTeamLoading(false);
@@ -90,19 +105,31 @@ export default function TransferBattle() {
   }, [selectedTeamId]);
 
   const filteredCandidates = useMemo(() => {
-    if (!teamDetail) return candidates;
-    const activeRosterIds = new Set(teamDetail.roster.map((player) => player.player_id));
-    return candidates.filter((candidate) => !activeRosterIds.has(candidate.player_id));
-  }, [candidates, teamDetail]);
+    let pool = candidates;
+
+    if (teamDetail) {
+      const activeRosterIds = new Set(teamDetail.roster.map((player) => player.player_id));
+      pool = pool.filter((candidate) => !activeRosterIds.has(candidate.player_id));
+    }
+
+    if (candidateSearch.trim()) {
+      const q = candidateSearch.trim().toLowerCase();
+      pool = pool.filter((candidate) => {
+        return (
+          candidate.nickname?.toLowerCase().includes(q) ||
+          candidate.role?.toLowerCase().includes(q) ||
+          candidate.secondary_role?.toLowerCase().includes(q) ||
+          candidate.team?.toLowerCase().includes(q) ||
+          candidate.status?.toLowerCase().includes(q)
+        );
+      });
+    }
+
+    return pool;
+  }, [candidates, teamDetail, candidateSearch]);
 
   async function handleCompare() {
-    if (
-      !selectedTeamId ||
-      !moveAOutgoing ||
-      !moveAIncoming ||
-      !moveBOutgoing ||
-      !moveBIncoming
-    ) {
+    if (!selectedTeamId || !moveAOutgoing || !moveAIncoming || !moveBOutgoing || !moveBIncoming) {
       setError("Please complete both moves before comparing.");
       return;
     }
@@ -123,6 +150,7 @@ export default function TransferBattle() {
           incoming_player_id: Number(moveBIncoming),
         },
       });
+
       setResult(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Transfer battle failed");
@@ -142,6 +170,39 @@ export default function TransferBattle() {
         </p>
       </div>
 
+      {!selectedTeamId && (
+        <div style={styles.emptyHero}>
+          <div style={styles.emptyHeroCard}>
+            <div style={styles.cardHeader}>
+              <h2 style={styles.cardTitle}>How Transfer Battle works</h2>
+              <Badge label="Start here" type="info" />
+            </div>
+            <p>Pick one team, then compare two possible roster moves for that team.</p>
+            <ul style={styles.list}>
+              <li style={styles.listItem}>Choose a team</li>
+              <li style={styles.listItem}>Build Move A and Move B</li>
+              <li style={styles.listItem}>Compare projected improvement, role fit, and verdict</li>
+            </ul>
+          </div>
+
+          <div style={styles.emptyHeroCard}>
+            <div style={styles.cardHeader}>
+              <h2 style={styles.cardTitle}>Good use cases</h2>
+              <Badge label="Ideas" type="warning" />
+            </div>
+            <ul style={styles.list}>
+              <li style={styles.listItem}>Compare two different replacements for the same weak role</li>
+              <li style={styles.listItem}>Compare a free agent move against an active roster target</li>
+              <li style={styles.listItem}>Test whether a stronger player actually improves role balance</li>
+            </ul>
+            <div style={styles.linkRow}>
+              <Link to="/teams" style={styles.inlineLink}>Browse teams</Link>
+              <Link to="/simulator" style={styles.inlineLink}>Open simulator</Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {error && <div style={styles.error}>{error}</div>}
 
       <div style={styles.panel}>
@@ -160,98 +221,118 @@ export default function TransferBattle() {
             ))}
           </select>
         </div>
+
+        <div style={styles.field}>
+          <label style={styles.label}>Search Incoming Players</label>
+          <input
+            style={styles.input}
+            type="text"
+            placeholder="Search nickname, role, team, status..."
+            value={candidateSearch}
+            onChange={(e) => setCandidateSearch(e.target.value)}
+          />
+        </div>
+
+        <div style={styles.resultMeta}>
+          Incoming candidates shown: {filteredCandidates.length}
+        </div>
       </div>
 
       {teamLoading && <p style={styles.loadingText}>Loading team roster...</p>}
 
       {teamDetail && (
-        <div style={styles.gridTwo}>
-          <div style={styles.card}>
-            <div style={styles.moveHeader}>
-              <h2 style={styles.sectionTitle}>Move A</h2>
-              <Badge label="Scenario A" type="info" />
+        <>
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>{teamDetail.name}</h2>
+            <Link to={`/teams/${teamDetail.id}`} style={styles.inlineLink}>
+              Open team page
+            </Link>
+          </div>
+
+          <div style={styles.gridTwo}>
+            <div style={styles.card}>
+              <div style={styles.moveHeader}>
+                <h2 style={styles.sectionTitle}>Move A</h2>
+                <Badge label="Scenario A" type="info" />
+              </div>
+
+              <div style={styles.field}>
+                <label style={styles.label}>Outgoing Player</label>
+                <select
+                  style={styles.select}
+                  value={moveAOutgoing}
+                  onChange={(e) => setMoveAOutgoing(e.target.value ? Number(e.target.value) : "")}
+                >
+                  <option value="">Choose outgoing player</option>
+                  {teamDetail.roster.map((player) => (
+                    <option key={player.player_id} value={player.player_id}>
+                      {player.nickname} {player.role ? `(${player.role})` : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={styles.field}>
+                <label style={styles.label}>Incoming Player</label>
+                <select
+                  style={styles.select}
+                  value={moveAIncoming}
+                  onChange={(e) => setMoveAIncoming(e.target.value ? Number(e.target.value) : "")}
+                >
+                  <option value="">Choose incoming player</option>
+                  {filteredCandidates.map((candidate) => (
+                    <option key={candidate.player_id} value={candidate.player_id}>
+                      {candidate.nickname} {candidate.role ? `(${candidate.role}${candidate.team ? ` • ${candidate.team}` : ""})` : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
-            <div style={styles.field}>
-              <label style={styles.label}>Outgoing Player</label>
-              <select
-                style={styles.select}
-                value={moveAOutgoing}
-                onChange={(e) => setMoveAOutgoing(e.target.value ? Number(e.target.value) : "")}
-              >
-                <option value="">Choose outgoing player</option>
-                {teamDetail.roster.map((player) => (
-                  <option key={player.player_id} value={player.player_id}>
-                    {player.nickname} {player.role ? `(${player.role})` : ""}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <div style={styles.card}>
+              <div style={styles.moveHeader}>
+                <h2 style={styles.sectionTitle}>Move B</h2>
+                <Badge label="Scenario B" type="warning" />
+              </div>
 
-            <div style={styles.field}>
-              <label style={styles.label}>Incoming Player</label>
-              <select
-                style={styles.select}
-                value={moveAIncoming}
-                onChange={(e) => setMoveAIncoming(e.target.value ? Number(e.target.value) : "")}
-              >
-                <option value="">Choose incoming player</option>
-                {filteredCandidates.map((candidate) => (
-                  <option key={candidate.player_id} value={candidate.player_id}>
-                    {candidate.nickname}{" "}
-                    {candidate.role ? `(${candidate.role} • ${Math.round(candidate.strength_score ?? 0)})` : ""}
-                  </option>
-                ))}
-              </select>
+              <div style={styles.field}>
+                <label style={styles.label}>Outgoing Player</label>
+                <select
+                  style={styles.select}
+                  value={moveBOutgoing}
+                  onChange={(e) => setMoveBOutgoing(e.target.value ? Number(e.target.value) : "")}
+                >
+                  <option value="">Choose outgoing player</option>
+                  {teamDetail.roster.map((player) => (
+                    <option key={player.player_id} value={player.player_id}>
+                      {player.nickname} {player.role ? `(${player.role})` : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={styles.field}>
+                <label style={styles.label}>Incoming Player</label>
+                <select
+                  style={styles.select}
+                  value={moveBIncoming}
+                  onChange={(e) => setMoveBIncoming(e.target.value ? Number(e.target.value) : "")}
+                >
+                  <option value="">Choose incoming player</option>
+                  {filteredCandidates.map((candidate) => (
+                    <option key={candidate.player_id} value={candidate.player_id}>
+                      {candidate.nickname} {candidate.role ? `(${candidate.role}${candidate.team ? ` • ${candidate.team}` : ""})` : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
 
-          <div style={styles.card}>
-            <div style={styles.moveHeader}>
-              <h2 style={styles.sectionTitle}>Move B</h2>
-              <Badge label="Scenario B" type="warning" />
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Outgoing Player</label>
-              <select
-                style={styles.select}
-                value={moveBOutgoing}
-                onChange={(e) => setMoveBOutgoing(e.target.value ? Number(e.target.value) : "")}
-              >
-                <option value="">Choose outgoing player</option>
-                {teamDetail.roster.map((player) => (
-                  <option key={player.player_id} value={player.player_id}>
-                    {player.nickname} {player.role ? `(${player.role})` : ""}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div style={styles.field}>
-              <label style={styles.label}>Incoming Player</label>
-              <select
-                style={styles.select}
-                value={moveBIncoming}
-                onChange={(e) => setMoveBIncoming(e.target.value ? Number(e.target.value) : "")}
-              >
-                <option value="">Choose incoming player</option>
-                {filteredCandidates.map((candidate) => (
-                  <option key={candidate.player_id} value={candidate.player_id}>
-                    {candidate.nickname}{" "}
-                    {candidate.role ? `(${candidate.role} • ${Math.round(candidate.strength_score ?? 0)})` : ""}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {teamDetail && (
-        <button style={styles.button} onClick={handleCompare} disabled={battleLoading}>
-          {battleLoading ? "Comparing..." : "Compare Moves"}
-        </button>
+          <button style={styles.button} onClick={handleCompare} disabled={battleLoading}>
+            {battleLoading ? "Comparing..." : "Compare Moves"}
+          </button>
+        </>
       )}
 
       {result && (
@@ -268,18 +349,20 @@ export default function TransferBattle() {
             </div>
 
             <div style={styles.summaryCard}>
-              <p style={styles.eyebrow}>MOVE A DELTA</p>
+              <p style={styles.eyebrow}>MOVE A IMPROVEMENT</p>
               <p style={styles.bigText}>{result.comparison.move_a_delta}</p>
+              <p style={styles.smallText}>{improvementLabel(result.comparison.move_a_delta)}</p>
             </div>
 
             <div style={styles.summaryCard}>
-              <p style={styles.eyebrow}>MOVE B DELTA</p>
+              <p style={styles.eyebrow}>MOVE B IMPROVEMENT</p>
               <p style={styles.bigText}>{result.comparison.move_b_delta}</p>
+              <p style={styles.smallText}>{improvementLabel(result.comparison.move_b_delta)}</p>
             </div>
           </div>
 
           <div style={styles.card}>
-            <h3 style={styles.cardTitle}>Why</h3>
+            <h3 style={styles.cardTitle}>Why this move wins</h3>
             <p>{result.comparison.winner_reason}</p>
           </div>
 
@@ -293,7 +376,13 @@ export default function TransferBattle() {
                 />
               </div>
               <p>
-                {result.move_a.swap.outgoing.nickname} → {result.move_a.swap.incoming.nickname}
+                <Link to={`/players/${result.move_a.swap.outgoing.id}`} style={styles.inlineLink}>
+                  {result.move_a.swap.outgoing.nickname}
+                </Link>{" "}
+                →{" "}
+                <Link to={`/players/${result.move_a.swap.incoming.id}`} style={styles.inlineLink}>
+                  {result.move_a.swap.incoming.nickname}
+                </Link>
               </p>
               <p>Role Fit: {result.move_a.summary.role_fit_label}</p>
               <p>Strength Change: {result.move_a.summary.strength_change_label}</p>
@@ -320,7 +409,13 @@ export default function TransferBattle() {
                 />
               </div>
               <p>
-                {result.move_b.swap.outgoing.nickname} → {result.move_b.swap.incoming.nickname}
+                <Link to={`/players/${result.move_b.swap.outgoing.id}`} style={styles.inlineLink}>
+                  {result.move_b.swap.outgoing.nickname}
+                </Link>{" "}
+                →{" "}
+                <Link to={`/players/${result.move_b.swap.incoming.id}`} style={styles.inlineLink}>
+                  {result.move_b.swap.incoming.nickname}
+                </Link>
               </p>
               <p>Role Fit: {result.move_b.summary.role_fit_label}</p>
               <p>Strength Change: {result.move_b.summary.strength_change_label}</p>
@@ -370,6 +465,15 @@ const styles: Record<string, React.CSSProperties> = {
     maxWidth: "900px",
     lineHeight: 1.6,
   },
+  emptyHero: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "16px",
+    marginBottom: "20px",
+  },
+  emptyHeroCard: {
+    ...baseCard,
+  },
   panel: {
     display: "grid",
     gap: "16px",
@@ -379,13 +483,20 @@ const styles: Record<string, React.CSSProperties> = {
   field: {
     display: "grid",
     gap: "8px",
-    marginBottom: "14px",
+    marginBottom: "16px",
   },
   label: {
     fontWeight: 700,
     color: "#e5e7eb",
   },
   select: {
+    padding: "12px",
+    borderRadius: "12px",
+    border: "1px solid #4b5563",
+    background: "#0f172a",
+    color: "#f9fafb",
+  },
+  input: {
     padding: "12px",
     borderRadius: "12px",
     border: "1px solid #4b5563",
@@ -401,6 +512,9 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 700,
     cursor: "pointer",
     marginBottom: "24px",
+  },
+  resultMeta: {
+    color: "#d1d5db",
   },
   error: {
     background: "#7f1d1d",
@@ -428,13 +542,33 @@ const styles: Record<string, React.CSSProperties> = {
   sectionTitle: {
     margin: 0,
   },
+  inlineLink: {
+    color: "#93c5fd",
+    textDecoration: "none",
+    fontWeight: 600,
+  },
+  linkRow: {
+    display: "flex",
+    gap: "14px",
+    flexWrap: "wrap",
+    marginTop: "12px",
+  },
+  gridTwo: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "16px",
+    marginBottom: "16px",
+  },
+  card: {
+    ...baseCard,
+  },
   moveHeader: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     gap: "12px",
-    marginBottom: "10px",
     flexWrap: "wrap",
+    marginBottom: "12px",
   },
   summaryGrid: {
     display: "grid",
@@ -458,17 +592,20 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 700,
     margin: 0,
   },
-  gridTwo: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    gap: "16px",
-    marginBottom: "16px",
-  },
-  card: {
-    ...baseCard,
+  smallText: {
+    color: "#d1d5db",
+    marginTop: "8px",
+    marginBottom: 0,
   },
   cardTitle: {
-    marginTop: 0,
-    marginBottom: "10px",
+    margin: 0,
+  },
+  list: {
+    margin: 0,
+    paddingLeft: "18px",
+  },
+  listItem: {
+    marginBottom: "8px",
+    color: "#e5e7eb",
   },
 };

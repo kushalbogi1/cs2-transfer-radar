@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import Badge from "../components/Badge";
 import {
   fetchCandidates,
@@ -27,9 +28,11 @@ export default function Simulator() {
   const [selectedTeamId, setSelectedTeamId] = useState<number | "">("");
   const [selectedOutgoingId, setSelectedOutgoingId] = useState<number | "">("");
   const [selectedIncomingId, setSelectedIncomingId] = useState<number | "">("");
+  const [candidateMode, setCandidateMode] = useState<"available_only" | "active_targets" | "all">("available_only");
   const [teamDetail, setTeamDetail] = useState<TeamDetail | null>(null);
   const [result, setResult] = useState<SimulationResponse | null>(null);
   const [suggestions, setSuggestions] = useState<SuggestionResponse | null>(null);
+  const [incomingSearch, setIncomingSearch] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [teamLoading, setTeamLoading] = useState(false);
@@ -38,14 +41,10 @@ export default function Simulator() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function loadInitialData() {
+    async function loadTeams() {
       try {
-        const [teamsData, candidatesData] = await Promise.all([
-          fetchTeams(),
-          fetchCandidates(),
-        ]);
+        const teamsData = await fetchTeams();
         setTeams(teamsData);
-        setCandidates(candidatesData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
@@ -53,27 +52,44 @@ export default function Simulator() {
       }
     }
 
-    loadInitialData();
+    loadTeams();
   }, []);
 
   useEffect(() => {
+    async function loadCandidates() {
+      try {
+        const candidatesData = await fetchCandidates(candidateMode);
+        setCandidates(candidatesData);
+        setSelectedIncomingId("");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load candidates");
+      }
+    }
+
+    loadCandidates();
+  }, [candidateMode]);
+
+  useEffect(() => {
     async function loadTeamDetail() {
+      setError(null);
+      setResult(null);
+      setSuggestions(null);
+      setSelectedOutgoingId("");
+      setSelectedIncomingId("");
+      setIncomingSearch("");
+
       if (!selectedTeamId) {
         setTeamDetail(null);
-        setSelectedOutgoingId("");
-        setSuggestions(null);
         return;
       }
 
       setTeamLoading(true);
-      setResult(null);
 
       try {
         const data = await fetchTeam(Number(selectedTeamId));
         setTeamDetail(data);
-        setSelectedOutgoingId("");
-        setSelectedIncomingId("");
       } catch (err) {
+        setTeamDetail(null);
         setError(err instanceof Error ? err.message : "Failed to load team roster");
       } finally {
         setTeamLoading(false);
@@ -84,32 +100,79 @@ export default function Simulator() {
   }, [selectedTeamId]);
 
   useEffect(() => {
+    let cancelled = false;
+
     async function loadSuggestions() {
-      if (!selectedTeamId || !selectedOutgoingId) {
+      if (!selectedTeamId || !selectedOutgoingId || !teamDetail) {
+        setSuggestions(null);
+        return;
+      }
+
+      const outgoingStillValid = teamDetail.roster.some(
+        (player) => player.player_id === Number(selectedOutgoingId)
+      );
+
+      if (!outgoingStillValid) {
         setSuggestions(null);
         return;
       }
 
       setSuggestionsLoading(true);
+      setError(null);
 
       try {
-        const data = await fetchSuggestions(Number(selectedTeamId), Number(selectedOutgoingId));
-        setSuggestions(data);
+        const data = await fetchSuggestions(
+          Number(selectedTeamId),
+          Number(selectedOutgoingId),
+          candidateMode
+        );
+
+        if (!cancelled) {
+          setSuggestions(data);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load suggestions");
+        if (!cancelled) {
+          setSuggestions(null);
+          setError(err instanceof Error ? err.message : "Failed to load suggestions");
+        }
       } finally {
-        setSuggestionsLoading(false);
+        if (!cancelled) {
+          setSuggestionsLoading(false);
+        }
       }
     }
 
     loadSuggestions();
-  }, [selectedTeamId, selectedOutgoingId]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedTeamId, selectedOutgoingId, candidateMode, teamDetail]);
 
   const filteredCandidates = useMemo(() => {
-    if (!teamDetail) return candidates;
-    const activeRosterIds = new Set(teamDetail.roster.map((player) => player.player_id));
-    return candidates.filter((candidate) => !activeRosterIds.has(candidate.player_id));
-  }, [candidates, teamDetail]);
+    let pool = candidates;
+
+    if (teamDetail) {
+      const activeRosterIds = new Set(teamDetail.roster.map((player) => player.player_id));
+      pool = pool.filter((candidate) => !activeRosterIds.has(candidate.player_id));
+    }
+
+    if (incomingSearch.trim()) {
+      const q = incomingSearch.trim().toLowerCase();
+      pool = pool.filter((candidate) => {
+        return (
+          candidate.nickname?.toLowerCase().includes(q) ||
+          candidate.role?.toLowerCase().includes(q) ||
+          candidate.secondary_role?.toLowerCase().includes(q) ||
+          candidate.team?.toLowerCase().includes(q) ||
+          candidate.status?.toLowerCase().includes(q) ||
+          candidate.market_value_tier?.toLowerCase().includes(q)
+        );
+      });
+    }
+
+    return pool;
+  }, [candidates, teamDetail, incomingSearch]);
 
   async function handleSimulate() {
     if (!selectedTeamId || !selectedOutgoingId || !selectedIncomingId) {
@@ -142,7 +205,7 @@ export default function Simulator() {
       <div style={styles.heroBlock}>
         <h1 style={styles.title}>Roster Simulator</h1>
         <p style={styles.subtitle}>
-          Test a swap, see how role structure changes, and understand whether the move is an upgrade or downgrade.
+          Test a swap, compare realistic targets, and understand whether the move improves structure and strength.
         </p>
       </div>
 
@@ -166,6 +229,19 @@ export default function Simulator() {
         </div>
 
         <div style={styles.field}>
+          <label style={styles.label}>Candidate Mode</label>
+          <select
+            style={styles.select}
+            value={candidateMode}
+            onChange={(e) => setCandidateMode(e.target.value as "available_only" | "active_targets" | "all")}
+          >
+            <option value="available_only">Available now</option>
+            <option value="active_targets">Active targets</option>
+            <option value="all">All players</option>
+          </select>
+        </div>
+
+        <div style={styles.field}>
           <label style={styles.label}>Outgoing Player</label>
           <select
             style={styles.select}
@@ -183,6 +259,17 @@ export default function Simulator() {
         </div>
 
         <div style={styles.field}>
+          <label style={styles.label}>Search Incoming Players</label>
+          <input
+            style={styles.input}
+            type="text"
+            placeholder="Search nickname, role, team, status..."
+            value={incomingSearch}
+            onChange={(e) => setIncomingSearch(e.target.value)}
+          />
+        </div>
+
+        <div style={styles.field}>
           <label style={styles.label}>Incoming Player</label>
           <select
             style={styles.select}
@@ -193,10 +280,14 @@ export default function Simulator() {
             {filteredCandidates.map((candidate) => (
               <option key={candidate.player_id} value={candidate.player_id}>
                 {candidate.nickname}{" "}
-                {candidate.role ? `(${candidate.role} • ${Math.round(candidate.strength_score ?? 0)})` : ""}
+                {candidate.role ? `(${candidate.role}${candidate.team ? ` • ${candidate.team}` : ""})` : ""}
               </option>
             ))}
           </select>
+        </div>
+
+        <div style={styles.resultMeta}>
+          Incoming candidates shown: {filteredCandidates.length}
         </div>
 
         <button style={styles.button} onClick={handleSimulate} disabled={simLoading}>
@@ -208,21 +299,29 @@ export default function Simulator() {
 
       {teamDetail && (
         <div style={styles.sectionBlock}>
-          <h2 style={styles.sectionTitle}>{teamDetail.name} Roster</h2>
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>{teamDetail.name} Roster</h2>
+            <Link to={`/teams/${teamDetail.id}`} style={styles.inlineLink}>
+              Open team page
+            </Link>
+          </div>
           <div style={styles.grid}>
             {teamDetail.roster.map((player) => (
-              <div
-                key={player.player_id}
-                style={styles.card}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
-              >
-                <h3 style={styles.cardTitle}>{player.nickname}</h3>
-                <p>Role: {player.role ?? "Unknown"}</p>
-                <p>Strength: {player.strength_score ?? "N/A"}</p>
-                <p>Age: {player.age ?? "Unknown"}</p>
-                <p>Nationality: {player.nationality ?? "Unknown"}</p>
-              </div>
+              <Link key={player.player_id} to={`/players/${player.player_id}`} style={styles.linkCard}>
+                <div
+                  style={styles.card}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-3px)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0px)")}
+                >
+                  <h3 style={styles.cardTitle}>{player.nickname}</h3>
+                  <p>Role: {player.role ?? "Unknown"}</p>
+                  <p>Secondary Role: {player.secondary_role ?? "None"}</p>
+                  <p>Strength: {player.strength_score ?? "N/A"}</p>
+                  <p>Age: {player.age ?? "Unknown"}</p>
+                  <p>Nationality: {player.nationality ?? "Unknown"}</p>
+                  <p style={styles.cardHint}>Open player page</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -232,9 +331,16 @@ export default function Simulator() {
         <div style={styles.sectionBlock}>
           <div style={styles.sectionHeader}>
             <h2 style={styles.sectionTitle}>Smart Suggestions</h2>
-            {suggestions?.outgoing_player?.role ? (
-              <Badge label={`Replacing ${suggestions.outgoing_player.role}`} type="info" />
-            ) : null}
+            <Badge
+              label={
+                candidateMode === "available_only"
+                  ? "Available now"
+                  : candidateMode === "active_targets"
+                  ? "Active targets"
+                  : "All players"
+              }
+              type="info"
+            />
           </div>
 
           {suggestionsLoading ? (
@@ -242,7 +348,7 @@ export default function Simulator() {
           ) : suggestions ? (
             <div style={styles.grid}>
               {suggestions.suggestions.map((item) => (
-                <button
+                <div
                   key={item.player_id}
                   style={styles.cardButton}
                   onClick={() => setSelectedIncomingId(item.player_id)}
@@ -254,13 +360,39 @@ export default function Simulator() {
                     <Badge label={`Fit ${item.fit_score}`} type="info" />
                   </div>
                   <p>Role: {item.role ?? "Unknown"}</p>
-                  <p>Secondary: {item.secondary_role ?? "None"}</p>
+                  <p>Secondary Role: {item.secondary_role ?? "None"}</p>
+                  <p>Status: {item.status ?? "Unknown"}</p>
+                  <p>Market Tier: {item.market_value_tier ?? "Unknown"}</p>
+                  <p>Team: {item.candidate_team ?? "No current team"}</p>
+                  <p>Team Tier: {item.candidate_team_tier ?? "N/A"}</p>
                   <p>Strength: {item.strength_score ?? "N/A"}</p>
-                </button>
+
+                  <div style={styles.linkRow}>
+                    <Link
+                      to={`/players/${item.player_id}`}
+                      style={styles.inlineLink}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Open player
+                    </Link>
+                    {item.candidate_team ? (
+                      <Link
+                        to="/teams"
+                        style={styles.inlineLink}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Browse teams
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
               ))}
             </div>
           ) : (
-            <div style={styles.card}>No suggestions available.</div>
+            <div style={styles.card}>
+              No suggestions available for this role under the current filter. Try switching candidate mode to
+              Active targets or All players.
+            </div>
           )}
         </div>
       )}
@@ -274,7 +406,7 @@ export default function Simulator() {
 
           <div style={styles.summaryGrid}>
             <div style={styles.summaryCard}>
-              <p style={styles.eyebrow}>COMBINED DELTA</p>
+              <p style={styles.eyebrow}>PROJECTED IMPROVEMENT</p>
               <p style={styles.bigText}>{result.summary.combined_delta}</p>
             </div>
 
@@ -298,10 +430,18 @@ export default function Simulator() {
             <div style={styles.card}>
               <h3 style={styles.cardTitle}>Swap</h3>
               <p>
-                Out: <strong>{result.swap.outgoing.nickname}</strong> ({result.swap.outgoing.role ?? "Unknown"})
+                Out:{" "}
+                <Link to={`/players/${result.swap.outgoing.id}`} style={styles.inlineLink}>
+                  {result.swap.outgoing.nickname}
+                </Link>{" "}
+                ({result.swap.outgoing.role ?? "Unknown"})
               </p>
               <p>
-                In: <strong>{result.swap.incoming.nickname}</strong> ({result.swap.incoming.role ?? "Unknown"})
+                In:{" "}
+                <Link to={`/players/${result.swap.incoming.id}`} style={styles.inlineLink}>
+                  {result.swap.incoming.nickname}
+                </Link>{" "}
+                ({result.swap.incoming.role ?? "Unknown"})
               </p>
             </div>
 
@@ -401,6 +541,13 @@ const styles: Record<string, React.CSSProperties> = {
     background: "#0f172a",
     color: "#f9fafb",
   },
+  input: {
+    padding: "12px",
+    borderRadius: "12px",
+    border: "1px solid #4b5563",
+    background: "#0f172a",
+    color: "#f9fafb",
+  },
   button: {
     padding: "12px 16px",
     borderRadius: "12px",
@@ -409,6 +556,9 @@ const styles: Record<string, React.CSSProperties> = {
     color: "#fff",
     fontWeight: 700,
     cursor: "pointer",
+  },
+  resultMeta: {
+    color: "#d1d5db",
   },
   error: {
     background: "#7f1d1d",
@@ -432,6 +582,17 @@ const styles: Record<string, React.CSSProperties> = {
     gap: "12px",
     marginBottom: "16px",
     flexWrap: "wrap",
+  },
+  inlineLink: {
+    color: "#93c5fd",
+    textDecoration: "none",
+    fontWeight: 600,
+  },
+  linkRow: {
+    display: "flex",
+    gap: "14px",
+    flexWrap: "wrap",
+    marginTop: "12px",
   },
   sectionTitle: {
     margin: 0,
@@ -469,6 +630,10 @@ const styles: Record<string, React.CSSProperties> = {
     gap: "16px",
     marginBottom: "16px",
   },
+  linkCard: {
+    textDecoration: "none",
+    color: "inherit",
+  },
   card: {
     ...baseCard,
   },
@@ -484,10 +649,16 @@ const styles: Record<string, React.CSSProperties> = {
     justifyContent: "space-between",
     gap: "12px",
     marginBottom: "8px",
+    flexWrap: "wrap",
   },
   cardTitle: {
     marginTop: 0,
     marginBottom: "10px",
+  },
+  cardHint: {
+    marginTop: "12px",
+    color: "#93c5fd",
+    fontSize: "14px",
   },
   list: {
     margin: 0,

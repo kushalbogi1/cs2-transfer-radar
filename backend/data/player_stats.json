@@ -1,202 +1,202 @@
 [
-  {
-    "nickname": "ZywOo",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.31,
-    "impact": 1.29,
-    "adr": 86.4,
-    "kast": 74.8,
-    "maps_played": 72
-  },
-  {
-    "nickname": "apEX",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 0.98,
-    "impact": 0.95,
-    "adr": 72.1,
-    "kast": 69.2,
-    "maps_played": 80
-  },
-  {
-    "nickname": "flameZ",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.10,
-    "impact": 1.11,
-    "adr": 79.8,
-    "kast": 71.0,
-    "maps_played": 74
-  },
-  {
-    "nickname": "Spinx",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.13,
-    "impact": 1.06,
-    "adr": 78.6,
-    "kast": 72.9,
-    "maps_played": 76
-  },
-  {
-    "nickname": "mezii",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.01,
-    "impact": 0.93,
-    "adr": 70.3,
-    "kast": 70.2,
-    "maps_played": 70
-  },
-  {
-    "nickname": "donk",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.36,
-    "impact": 1.42,
-    "adr": 92.1,
-    "kast": 74.1,
-    "maps_played": 68
-  },
-  {
-    "nickname": "sh1ro",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.22,
-    "impact": 1.10,
-    "adr": 77.9,
-    "kast": 75.5,
-    "maps_played": 66
-  },
-  {
-    "nickname": "zont1x",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.05,
-    "impact": 0.99,
-    "adr": 73.2,
-    "kast": 71.7,
-    "maps_played": 62
-  },
-  {
-    "nickname": "magixx",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.00,
-    "impact": 0.92,
-    "adr": 69.8,
-    "kast": 70.4,
-    "maps_played": 64
-  },
-  {
-    "nickname": "chopper",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 0.97,
-    "impact": 0.90,
-    "adr": 67.1,
-    "kast": 68.7,
-    "maps_played": 69
-  },
-  {
-    "nickname": "huNter-",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.09,
-    "impact": 1.03,
-    "adr": 77.4,
-    "kast": 71.5,
-    "maps_played": 71
-  },
-  {
-    "nickname": "NiKo",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.25,
-    "impact": 1.23,
-    "adr": 84.9,
-    "kast": 73.0,
-    "maps_played": 75
-  },
-  {
-    "nickname": "m0NESY",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.27,
-    "impact": 1.16,
-    "adr": 79.5,
-    "kast": 74.3,
-    "maps_played": 74
-  },
-  {
-    "nickname": "HooXi",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 0.89,
-    "impact": 0.78,
-    "adr": 60.2,
-    "kast": 66.8,
-    "maps_played": 72
-  },
-  {
-    "nickname": "nexa",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 0.95,
-    "impact": 0.87,
-    "adr": 66.4,
-    "kast": 68.9,
-    "maps_played": 68
-  },
-  {
-    "nickname": "siuhy",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.01,
-    "impact": 0.94,
-    "adr": 69.2,
-    "kast": 71.1,
-    "maps_played": 73
-  },
-  {
-    "nickname": "jL",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.14,
-    "impact": 1.09,
-    "adr": 80.1,
-    "kast": 72.4,
-    "maps_played": 70
-  },
-  {
-    "nickname": "broky",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.15,
-    "impact": 1.01,
-    "adr": 74.0,
-    "kast": 74.9,
-    "maps_played": 77
-  },
-  {
-    "nickname": "NAF",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.12,
-    "impact": 1.02,
-    "adr": 75.8,
-    "kast": 73.6,
-    "maps_played": 76
-  },
-  {
-    "nickname": "rain",
-    "source": "manual_import",
-    "snapshot_date": "2026-03-16",
-    "rating": 1.04,
-    "impact": 0.98,
-    "adr": 73.1,
-    "kast": 70.1,
-    "maps_played": 79
-  }
+  { "nickname": "ZywOo", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.30, "impact": 1.42, "adr": 87.5, "kast": 75.5, "maps_played": 900 },
+  { "nickname": "donk", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.32, "impact": 1.47, "adr": 90.5, "kast": 74.8, "maps_played": 700 },
+  { "nickname": "m0NESY", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.25, "impact": 1.28, "adr": 80.0, "kast": 74.5, "maps_played": 850 },
+  { "nickname": "sh1ro", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.24, "impact": 1.21, "adr": 78.5, "kast": 76.5, "maps_played": 1400 },
+  { "nickname": "NiKo", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.15, "impact": 1.30, "adr": 85.0, "kast": 72.0, "maps_played": 2200 },
+
+  { "nickname": "ropz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.18, "impact": 1.14, "adr": 80.2, "kast": 75.0, "maps_played": 1700 },
+  { "nickname": "Spinx", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.17, "impact": 1.14, "adr": 80.1, "kast": 73.5, "maps_played": 1500 },
+  { "nickname": "frozen", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.18, "impact": 1.12, "adr": 79.8, "kast": 75.2, "maps_played": 1800 },
+  { "nickname": "Twistzz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.16, "impact": 1.14, "adr": 80.4, "kast": 74.1, "maps_played": 1600 },
+  { "nickname": "XANTARES", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.19, "impact": 1.34, "adr": 87.5, "kast": 72.5, "maps_played": 2000 },
+
+  { "nickname": "b1t", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.14, "impact": 1.09, "adr": 78.0, "kast": 74.0, "maps_played": 1600 },
+  { "nickname": "stavn", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.13, "impact": 1.12, "adr": 79.5, "kast": 72.5, "maps_played": 1700 },
+  { "nickname": "jabbi", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.07, "impact": 1.05, "adr": 75.3, "kast": 71.5, "maps_played": 1400 },
+  { "nickname": "TeSeS", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.08, "adr": 76.0, "kast": 71.2, "maps_played": 1500 },
+  { "nickname": "sjuush", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 0.98, "adr": 71.5, "kast": 73.0, "maps_played": 1500 },
+
+  { "nickname": "device", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.13, "impact": 1.20, "adr": 79.0, "kast": 72.0, "maps_played": 2300 },
+  { "nickname": "blameF", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.16, "impact": 1.08, "adr": 79.0, "kast": 76.0, "maps_played": 2000 },
+
+  { "nickname": "cadiaN", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.05, "adr": 74.0, "kast": 71.5, "maps_played": 2000 },
+  { "nickname": "Jame", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.14, "impact": 1.03, "adr": 73.5, "kast": 76.5, "maps_played": 2000 },
+
+  { "nickname": "flameZ", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.10, "impact": 1.12, "adr": 79.5, "kast": 71.2, "maps_played": 1400 },
+  { "nickname": "xertioN", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.12, "impact": 1.16, "adr": 81.0, "kast": 70.5, "maps_played": 1300 },
+  { "nickname": "iM", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.10, "adr": 78.5, "kast": 71.0, "maps_played": 1300 },
+  { "nickname": "Brollan", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.09, "impact": 1.13, "adr": 80.0, "kast": 71.0, "maps_played": 1500 },
+  { "nickname": "Jimpphat", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.11, "impact": 1.07, "adr": 77.0, "kast": 74.0, "maps_played": 800 },
+
+  { "nickname": "torzsi", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.13, "impact": 1.09, "adr": 74.5, "kast": 75.0, "maps_played": 1200 },
+
+  { "nickname": "NAF", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.12, "impact": 1.05, "adr": 77.5, "kast": 75.5, "maps_played": 2000 },
+  { "nickname": "EliGE", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.14, "impact": 1.12, "adr": 80.5, "kast": 72.0, "maps_played": 2500 },
+  { "nickname": "YEKINDAR", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.10, "impact": 1.15, "adr": 82.0, "kast": 70.0, "maps_played": 1800 },
+
+  { "nickname": "KSCERATO", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.18, "impact": 1.12, "adr": 81.0, "kast": 75.5, "maps_played": 2200 },
+  { "nickname": "yuurih", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.15, "impact": 1.10, "adr": 79.0, "kast": 74.0, "maps_played": 2100 },
+
+  { "nickname": "degster", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.15, "impact": 1.11, "adr": 77.5, "kast": 74.5, "maps_played": 1500 },
+  { "nickname": "SunPayus", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.16, "impact": 1.12, "adr": 78.0, "kast": 75.0, "maps_played": 1400 },
+
+  { "nickname": "tabseN", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.10, "impact": 1.08, "adr": 77.5, "kast": 72.5, "maps_played": 2400 },
+  { "nickname": "apEX", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.96, "impact": 1.05, "adr": 76.1, "kast": 69.0, "maps_played": 2590 },
+  { "nickname": "karrigan", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.97, "impact": 0.94, "adr": 70.3, "kast": 68.5, "maps_played": 2400 },
+  { "nickname": "Aleksib", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.99, "impact": 0.96, "adr": 71.6, "kast": 69.9, "maps_played": 1800 },
+  { "nickname": "w0nderful", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.17, "impact": 1.13, "adr": 77.6, "kast": 74.6, "maps_played": 980 },
+  { "nickname": "jL", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.09, "impact": 1.07, "adr": 76.8, "kast": 72.5, "maps_played": 900 },
+
+  { "nickname": "magixx", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 0.99, "adr": 72.5, "kast": 73.8, "maps_played": 1100 },
+  { "nickname": "zont1x", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.07, "impact": 1.05, "adr": 75.6, "kast": 72.1, "maps_played": 820 },
+  { "nickname": "chopper", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.99, "impact": 0.95, "adr": 70.8, "kast": 70.2, "maps_played": 1500 },
+
+  { "nickname": "huNter-", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.11, "impact": 1.09, "adr": 77.9, "kast": 72.8, "maps_played": 1900 },
+  { "nickname": "nexa", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 0.98, "adr": 72.0, "kast": 71.1, "maps_played": 1700 },
+
+  { "nickname": "siuhy", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.00, "adr": 73.1, "kast": 71.7, "maps_played": 900 },
+  { "nickname": "xKacpersky", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.97, "adr": 71.2, "kast": 70.4, "maps_played": 520 },
+
+  { "nickname": "FL1T", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.03, "adr": 75.2, "kast": 73.6, "maps_played": 1700 },
+  { "nickname": "fame", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.00, "adr": 73.0, "kast": 72.1, "maps_played": 1200 },
+
+  { "nickname": "oSee", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 0.98, "adr": 72.5, "kast": 71.3, "maps_played": 1500 },
+  { "nickname": "hallzerk", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.02, "adr": 73.9, "kast": 72.0, "maps_played": 1100 },
+  { "nickname": "Grim", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.07, "impact": 1.05, "adr": 76.4, "kast": 71.6, "maps_played": 1400 },
+  { "nickname": "floppy", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.00, "adr": 72.8, "kast": 72.5, "maps_played": 1300 },
+
+  { "nickname": "Staehr", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.02, "adr": 74.1, "kast": 72.3, "maps_played": 900 },
+  { "nickname": "REZ", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.07, "adr": 76.9, "kast": 71.5, "maps_played": 2000 },
+  { "nickname": "headtr1ck", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.00, "adr": 73.8, "kast": 72.4, "maps_played": 950 },
+
+  { "nickname": "dycha", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.05, "adr": 75.4, "kast": 72.9, "maps_played": 1700 },
+  { "nickname": "Snappi", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.99, "impact": 0.96, "adr": 71.0, "kast": 70.5, "maps_played": 2100 },
+  { "nickname": "NertZ", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.13, "impact": 1.10, "adr": 78.7, "kast": 72.6, "maps_played": 1200 },
+
+  { "nickname": "Krimbo", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.05, "adr": 75.9, "kast": 73.3, "maps_played": 1200 },
+  { "nickname": "prosus", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.00, "adr": 73.0, "kast": 71.5, "maps_played": 900 },
+
+  { "nickname": "mantuu", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.07, "impact": 1.04, "adr": 74.8, "kast": 73.1, "maps_played": 1500 },
+  { "nickname": "f1ku", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 0.98, "adr": 72.2, "kast": 72.9, "maps_played": 1100 },
+
+  { "nickname": "volt", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.03, "adr": 75.0, "kast": 71.8, "maps_played": 800 },
+  { "nickname": "Keoz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.6, "kast": 70.9, "maps_played": 950 },
+  { "nickname": "Thomas", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.97, "adr": 71.8, "kast": 71.0, "maps_played": 1600 },
+  { "nickname": "acoR", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.04, "adr": 74.9, "kast": 73.5, "maps_played": 1500 },
+
+  { "nickname": "nicoodoz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.02, "adr": 73.7, "kast": 72.6, "maps_played": 1200 },
+
+  { "nickname": "FalleN", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 0.99, "adr": 71.9, "kast": 72.8, "maps_played": 2400 },
+  { "nickname": "molodoy", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.8, "kast": 70.7, "maps_played": 300 },
+
+  { "nickname": "MAJ3R", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.98, "impact": 0.95, "adr": 70.6, "kast": 70.0, "maps_played": 1700 },
+  { "nickname": "Wicadia", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.01, "adr": 73.9, "kast": 71.0, "maps_played": 700 },
+
+  { "nickname": "bLitz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.4, "kast": 71.9, "maps_played": 1000 },
+  { "nickname": "Techno", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.98, "adr": 71.8, "kast": 72.0, "maps_played": 1000 },
+  { "nickname": "mzinho", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.10, "impact": 1.14, "adr": 79.2, "kast": 71.4, "maps_played": 650 },
+  { "nickname": "910", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.03, "adr": 74.5, "kast": 73.7, "maps_played": 900 },
+  { "nickname": "cobrazera", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.7, "kast": 70.8, "maps_played": 500 },
+  { "nickname": "Maka", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.02, "adr": 74.2, "kast": 73.1, "maps_played": 1200 },
+  { "nickname": "Lucky", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.00, "adr": 73.6, "kast": 72.8, "maps_played": 1100 },
+  { "nickname": "misutaaa", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.01, "adr": 74.0, "kast": 71.5, "maps_played": 1400 },
+  { "nickname": "Ex3rcice", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.5, "kast": 70.9, "maps_played": 900 },
+  { "nickname": "Graviti", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.9, "kast": 70.7, "maps_played": 850 },
+
+  { "nickname": "arT", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.04, "adr": 76.3, "kast": 69.8, "maps_played": 2200 },
+  { "nickname": "dumau", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.07, "impact": 1.09, "adr": 78.4, "kast": 72.1, "maps_played": 1600 },
+  { "nickname": "latto", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.98, "adr": 72.3, "kast": 72.0, "maps_played": 1500 },
+  { "nickname": "n1ssim", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.97, "adr": 71.8, "kast": 70.5, "maps_played": 900 },
+  { "nickname": "saadzin", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.01, "adr": 73.7, "kast": 71.0, "maps_played": 1200 },
+
+  { "nickname": "Snax", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.4, "kast": 71.5, "maps_played": 2500 },
+  { "nickname": "Tauson", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.6, "kast": 70.8, "maps_played": 800 },
+  { "nickname": "PR", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.2, "kast": 71.0, "maps_played": 700 },
+  { "nickname": "hypex", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.7, "kast": 70.6, "maps_played": 600 },
+
+  { "nickname": "vsm", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.04, "adr": 75.5, "kast": 71.9, "maps_played": 1500 },
+  { "nickname": "biguzera", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.00, "adr": 73.2, "kast": 71.5, "maps_played": 1400 },
+  { "nickname": "piriajr", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.6, "kast": 70.9, "maps_played": 900 },
+  { "nickname": "nqz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.03, "adr": 74.4, "kast": 73.0, "maps_played": 1200 },
+  { "nickname": "snow", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.01, "adr": 73.8, "kast": 71.2, "maps_played": 1000 },
+
+  { "nickname": "xfl0ud", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.07, "adr": 77.6, "kast": 70.5, "maps_played": 900 },
+  { "nickname": "nilo", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.5, "kast": 71.3, "maps_played": 600 },
+  { "nickname": "susp", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.05, "adr": 76.8, "kast": 70.7, "maps_played": 700 },
+  { "nickname": "Chr1zN", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.98, "adr": 71.9, "kast": 70.8, "maps_played": 600 },
+  { "nickname": "Alkaren", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.97, "adr": 71.5, "kast": 70.5, "maps_played": 500 },
+
+  { "nickname": "alex666", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.99, "impact": 0.96, "adr": 70.8, "kast": 70.0, "maps_played": 400 },
+  { "nickname": "npl", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.01, "adr": 73.5, "kast": 71.1, "maps_played": 700 },
+  { "nickname": "kensizor", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.4, "kast": 70.9, "maps_played": 600 },
+  { "nickname": "esenthial", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.7, "kast": 70.6, "maps_played": 500 },
+  { "nickname": "s1zzi", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.6, "kast": 70.5, "maps_played": 400 },
+
+  { "nickname": "alex", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.99, "impact": 0.97, "adr": 71.0, "kast": 70.8, "maps_played": 2000 },
+  { "nickname": "mopoz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.02, "adr": 74.3, "kast": 71.5, "maps_played": 1600 },
+  { "nickname": "sausol", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.7, "kast": 70.9, "maps_played": 900 },
+  { "nickname": "dav1g", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.8, "kast": 70.7, "maps_played": 900 },
+  { "nickname": "MartinezSa", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.02, "adr": 74.6, "kast": 72.4, "maps_played": 1100 },
+  
+  { "nickname": "n0rb3r7", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.98, "adr": 72.0, "kast": 71.0, "maps_played": 1400 },
+  { "nickname": "dukefissura", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.5, "kast": 70.8, "maps_played": 900 },
+  { "nickname": "mizu", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.97, "adr": 71.2, "kast": 70.6, "maps_played": 700 },
+  { "nickname": "kAlash", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.99, "impact": 0.96, "adr": 70.8, "kast": 70.2, "maps_played": 1800 },
+  { "nickname": "frontales", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.00, "adr": 73.2, "kast": 71.5, "maps_played": 900 },
+
+  { "nickname": "LNZ", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.5, "kast": 71.3, "maps_played": 900 },
+  { "nickname": "brnz4n", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.02, "adr": 74.2, "kast": 72.0, "maps_played": 1200 },
+  { "nickname": "insani", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.05, "adr": 76.1, "kast": 71.2, "maps_played": 1000 },
+  { "nickname": "venomzera", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.6, "kast": 70.9, "maps_played": 800 },
+  { "nickname": "kl1m", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.00, "impact": 0.98, "adr": 71.8, "kast": 70.7, "maps_played": 700 },
+
+  { "nickname": "max", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.99, "impact": 0.97, "adr": 71.0, "kast": 70.5, "maps_played": 1100 },
+  { "nickname": "dgt", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.07, "adr": 78.0, "kast": 71.5, "maps_played": 1200 },
+  { "nickname": "meyern", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.08, "adr": 79.1, "kast": 72.0, "maps_played": 1300 },
+  { "nickname": "luchov", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.99, "adr": 72.7, "kast": 71.0, "maps_played": 900 },
+  { "nickname": "HUASOPEEK", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.01, "adr": 74.5, "kast": 72.3, "maps_played": 1000 },
+
+  { "nickname": "Maden", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.10, "adr": 80.5, "kast": 71.2, "maps_played": 1500 },
+  { "nickname": "Jeorge", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.00, "adr": 73.5, "kast": 71.0, "maps_played": 800 },
+
+  { "nickname": "dupreeh", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.14, "impact": 1.15, "adr": 79.8, "kast": 73.5, "maps_played": 2200 },
+  { "nickname": "Xyp9x", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 0.95, "adr": 70.2, "kast": 74.5, "maps_played": 2400 },
+  { "nickname": "olofmeister", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.05, "adr": 75.5, "kast": 73.0, "maps_played": 2300 },
+  { "nickname": "JW", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.07, "impact": 1.12, "adr": 78.2, "kast": 71.0, "maps_played": 2100 },
+  { "nickname": "flusha", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.09, "impact": 1.02, "adr": 74.8, "kast": 74.5, "maps_played": 2200 },
+
+  { "nickname": "GeT_RiGhT", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.12, "impact": 1.00, "adr": 73.5, "kast": 75.0, "maps_played": 2500 },
+  { "nickname": "f0rest", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.15, "impact": 1.10, "adr": 78.5, "kast": 73.5, "maps_played": 2600 },
+  { "nickname": "friberg", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 1.01, "adr": 74.0, "kast": 71.0, "maps_played": 2400 },
+  { "nickname": "pronax", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.98, "impact": 0.95, "adr": 69.5, "kast": 70.5, "maps_played": 2000 },
+  { "nickname": "dennis", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.06, "adr": 76.2, "kast": 71.5, "maps_played": 1900 },
+
+  { "nickname": "allu", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.03, "adr": 74.6, "kast": 73.0, "maps_played": 2300 },
+  { "nickname": "GuardiaN", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.15, "impact": 1.12, "adr": 78.9, "kast": 73.2, "maps_played": 2500 },
+  { "nickname": "seized", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 0.97, "adr": 71.5, "kast": 72.5, "maps_played": 2400 },
+  { "nickname": "Zeus", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 0.97, "impact": 0.94, "adr": 69.2, "kast": 70.0, "maps_played": 2600 },
+  { "nickname": "Dosia", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.98, "adr": 72.0, "kast": 71.5, "maps_played": 2300 },
+
+  { "nickname": "AdreN", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.06, "impact": 1.08, "adr": 77.5, "kast": 72.0, "maps_played": 2100 },
+  { "nickname": "Happy", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.04, "impact": 1.00, "adr": 73.5, "kast": 72.5, "maps_played": 2000 },
+  { "nickname": "RpK", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.00, "adr": 73.0, "kast": 72.0, "maps_played": 1900 },
+  { "nickname": "SmithZz", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.98, "adr": 72.0, "kast": 71.0, "maps_played": 1800 },
+  { "nickname": "kennyS", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.16, "impact": 1.20, "adr": 80.5, "kast": 72.5, "maps_played": 2400 },
+
+  { "nickname": "pashaBiceps", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.14, "impact": 1.12, "adr": 79.5, "kast": 73.5, "maps_played": 2300 },
+  { "nickname": "TaZ", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.02, "impact": 0.98, "adr": 72.0, "kast": 71.0, "maps_played": 2500 },
+  { "nickname": "NEO", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.10, "impact": 1.05, "adr": 75.5, "kast": 73.0, "maps_played": 2600 },
+  { "nickname": "byali", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.07, "adr": 77.5, "kast": 71.5, "maps_played": 2100 },
+  { "nickname": "TACO", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.01, "impact": 0.98, "adr": 71.5, "kast": 72.0, "maps_played": 2300 },
+
+  { "nickname": "fnx", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.05, "adr": 75.5, "kast": 73.0, "maps_played": 2000 },
+  { "nickname": "tarik", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.10, "impact": 1.12, "adr": 78.5, "kast": 72.0, "maps_played": 2100 },
+  { "nickname": "n0thing", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.07, "impact": 1.05, "adr": 76.5, "kast": 73.0, "maps_played": 2200 },
+  { "nickname": "Skadoodle", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.09, "impact": 1.08, "adr": 77.8, "kast": 73.5, "maps_played": 2000 },
+  { "nickname": "ptr", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 1.00, "adr": 73.0, "kast": 72.0, "maps_played": 1500 },
+
+  { "nickname": "Edward", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.08, "impact": 1.05, "adr": 75.8, "kast": 73.2, "maps_played": 2600 },
+  { "nickname": "kioShiMa", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.03, "impact": 0.99, "adr": 72.8, "kast": 73.0, "maps_played": 2100 },
+  { "nickname": "cajunb", "source": "manual_import", "snapshot_date": "2026-03-16", "rating": 1.05, "impact": 1.02, "adr": 74.5, "kast": 72.5, "maps_played": 2200 }
 ]
