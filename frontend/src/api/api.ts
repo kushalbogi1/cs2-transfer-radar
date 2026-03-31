@@ -16,10 +16,11 @@ export type Team = {
 export type TeamPlayer = {
   player_id: number;
   nickname: string;
-  full_name: string | null;
-  nationality: string | null;
-  age: number | null;
-  role: string | null;
+  full_name?: string | null;
+  nationality?: string | null;
+  age?: number | null;
+  role?: string | null;
+  secondary_role?: string | null;
   strength_score?: number | null;
 };
 
@@ -75,34 +76,23 @@ export type Player = {
   rank?: number;
 };
 
-export type PlayerStatsResponse = {
-  player: {
-    id: number;
-    nickname: string;
-    full_name: string | null;
-    strength_score: number | null;
-  };
-  latest_snapshot: {
-    source: string;
-    snapshot_date: string;
-    rating: number | null;
-    impact: number | null;
-    adr: number | null;
-    kast: number | null;
-    maps_played: number | null;
-  } | null;
-  snapshot_count: number;
-  snapshots: {
-    id: number;
-    source: string;
-    snapshot_date: string;
-    rating: number | null;
-    impact: number | null;
-    adr: number | null;
-    kast: number | null;
-    maps_played: number | null;
-  }[];
+export type PlayerStatsSnapshot = {
+  snapshot_date?: string | null;
+  rating?: number | null;
+  impact?: number | null;
+  adr?: number | null;
+  kast?: number | null;
+  maps_played?: number | null;
 };
+
+
+export type PlayerStatsResponse = {
+  player_id: number;
+  nickname: string;
+  latest_snapshot?: PlayerStatsSnapshot | null;
+  history?: PlayerStatsSnapshot[];
+};
+
 
 export type Candidate = {
   player_id: number;

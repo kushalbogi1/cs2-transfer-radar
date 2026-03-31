@@ -57,7 +57,7 @@ export default function PlayerPage() {
   if (error || !player) return <div style={styles.page}>Error: {error ?? "Player not found"}</div>;
 
   const latest = stats?.latest_snapshot ?? null;
-  const history = stats?.history ?? [];
+  const history: NonNullable<PlayerStatsResponse["history"]> = stats?.history ?? [];
   const compactHistory = history.slice(0, 5);
 
   return (
@@ -206,7 +206,7 @@ export default function PlayerPage() {
 
         {compactHistory.length > 0 ? (
           <div style={styles.historyList}>
-            {compactHistory.map((item, idx) => (
+            {compactHistory.map((item: NonNullable<PlayerStatsResponse["history"]>[number], idx: number) => (
               <div key={idx} style={styles.historyRow}>
                 <div>
                   <p style={styles.historyTitle}>{item.snapshot_date ?? "Unknown date"}</p>
